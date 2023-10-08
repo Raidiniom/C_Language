@@ -1,0 +1,2 @@
+Compile manually:
+g++ ./filename.c -0 filename.exe
