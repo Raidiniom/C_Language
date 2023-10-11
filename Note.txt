@@ -1,3 +1,5 @@
 Compile manually:
 Step 1: input in Terminal - g++ filename.c -o filename.exe
 Step 2: .\filename.exe
+
+Naming *exe files should be the first 4 letters of the source code name
