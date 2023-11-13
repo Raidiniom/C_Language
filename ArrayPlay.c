@@ -2,7 +2,7 @@
 
 int main()
 {
-    int my_fav[5];
+    int my_fav[5], total_fav;
 
     printf("Enter your 5 Favorite numbers: \n");
     for (int pos = 0; pos < 5; pos++)
@@ -15,6 +15,13 @@ int main()
     {
         printf("%d, ", my_fav[ite]);
     }
+
+    for (int sum = 0; sum < 5; sum++)
+    {
+        total_fav += my_fav[sum];
+    }
+
+    printf("\nTotal of your Fav Numbers: %d", total_fav);
 
     return 0;
 }
