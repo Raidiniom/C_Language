@@ -1,14 +1,7 @@
 #include <stdio.h>
 
-void kafkaline()
-{
-    printf("Before I joined the Stellaron Hunters, the nature of my work meant that I barely ever saw the same person twice.");
-}
-
-void yelanline()
-{
-    printf("The reason I'm willing to bet on you is because of your special status. I think it'll bring me a lot of leads that can get me closer to the truth... Heh, so, got any news for me today?");
-}
+void kafkaline();
+void yelanline();
 
 int main()
 {
@@ -27,4 +20,15 @@ int main()
     }
 
     return 0;
+}
+
+// Funcstion Line
+void kafkaline()
+{
+    printf("Before I joined the Stellaron Hunters, the nature of my work meant that I barely ever saw the same person twice.");
+}
+
+void yelanline()
+{
+    printf("The reason I'm willing to bet on you is because of your special status. I think it'll bring me a lot of leads that can get me closer to the truth... Heh, so, got any news for me today?");
 }

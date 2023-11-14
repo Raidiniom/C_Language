@@ -20,18 +20,7 @@
 
 int main()
 {
-    int age;
-    char first_letter, fav_letter;
-    float total_Score;
-
-    printf("Enter your Age: ");
-    scanf("%d", &age);
-
-    printf("Enter 1st Letter of Your Name [Lowercase]: ");
-    scanf("%c", &first_letter);
-
-    printf("Enter Favorite Letter: ");
-    scanf("%c", &fav_letter);
+    //
 
     return 0;
 }
