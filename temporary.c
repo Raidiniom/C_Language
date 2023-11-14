@@ -2,32 +2,22 @@
 
 int main()
 {
-    /*
-        Palindrome: 
-        
-        
-    */
-    int number, store, check_num, count = 0;
+    int number;
 
-    printf("Enter a long number: ");
+    printf("Enter a number: ");
     scanf("%d", &number);
-    store = number;
 
-    printf("Enter a number to find: ");
-    scanf("%d", &check_num);
-    
-    while (store > 0)
+    for (int i = 0; i <= number; i++)
     {
-        int reminder = store % 10;
-        if (check_num == reminder)
-        {
-            count++;
-        }
-        
-        store /= 10;
+        printf("%d\n", i);
     }
 
-    printf("%d appeared %d times", check_num, count);
+    printf("\n\n");
+    
+    for (int x = number; x >= 0; x--)
+    {
+        printf("%d\n", x);
+    }
     
 
     return 0;
