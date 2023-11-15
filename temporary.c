@@ -1,27 +1,24 @@
 #include <stdio.h>
 
-int main() {
-    int number;
-    
-    // Input
-    printf("Enter a number: ");
-    scanf("%d", &number);
-
-    // Output factors and highlight composite factors
-    printf("Factors of %d: ", number);
-    for (int i = 1; i <= number; i++) {
-        if (number % i == 0) {
-            // Print factor
-            printf("%d ", i);
-
-            // Highlight composite factors
-            if (i != 1 && i != number) {
-                printf("{%d} ", i);
-            }
+int main(){
+    long long int num, num1, num2, i = 0;
+    do{
+    printf("Input a Number: ");
+    scanf("%lld",&num);
+        if(num > num1){
+            num1 = num;
+            num2 = num;
+            i++;
         }
-    }
-
-    printf("\n");
+        if(num == 0){
+            printf("\nProgram Ended due to an input of 0\n");
+            printf("\nThe Greatest Number is : %lld",num1);
+        }
+        if(i == 3){
+            printf("\nProgram Ended due to 3 changes in the Greatest Number\n");
+            printf("\nThe Greatest Number is : %lld",num);
+        }
+    }while(i < 3 && num != 0);
 
     return 0;
 }
