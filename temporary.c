@@ -2,7 +2,7 @@
 
 int main()
 {
-    int number;
+    long long number;
 
     printf("Enter a number: ");
     scanf("%d", &number);
@@ -12,13 +12,12 @@ int main()
         printf("%d\n", i);
     }
 
-    printf("\n\n");
+    printf("\n");
     
     for (int x = number; x >= 0; x--)
     {
         printf("%d\n", x);
-    }
-    
+    }    
 
     return 0;
 }
