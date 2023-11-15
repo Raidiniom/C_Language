@@ -1,23 +1,27 @@
 #include <stdio.h>
 
-int main()
-{
-    long long number;
-
+int main() {
+    int number;
+    
+    // Input
     printf("Enter a number: ");
     scanf("%d", &number);
 
-    for (int i = 0; i <= number; i++)
-    {
-        printf("%d\n", i);
+    // Output factors and highlight composite factors
+    printf("Factors of %d: ", number);
+    for (int i = 1; i <= number; i++) {
+        if (number % i == 0) {
+            // Print factor
+            printf("%d ", i);
+
+            // Highlight composite factors
+            if (i != 1 && i != number) {
+                printf("{%d} ", i);
+            }
+        }
     }
 
     printf("\n");
-    
-    for (int x = number; x >= 0; x--)
-    {
-        printf("%d\n", x);
-    }    
 
     return 0;
 }
