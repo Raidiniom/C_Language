@@ -1,30 +1,24 @@
 #include <stdio.h>
 
 int main(){
-    int num;
-    int x = 0;
-    int y = 0;
-    int i = 0;
-
+    long long int num, num1, num2, i = 0;
     do{
-        printf("Input a Number: ");
-        scanf("%d",&num);
-         if(i == 0 || num > x ){
-            y = num;
-            x = num;
+    printf("Input a Number: ");
+    scanf("%lld",&num);
+        if(num > num1){
+            num1 = num;
+            num2 = num;
             i++;
         }
-    }
-    while(num != 0 && i != 3);
-    printf("\n");
-
-    if(i == 3){
-        printf("Program Ended due to 3 changes in the Greatest Number\n");
-    }
-    else
-        printf("Program Ended due to an input of 0\n");
-
-    printf("\nThe Greatest Number is : %d",y);
+        if(num == 0){
+            printf("\nProgram Ended due to an input of 0\n");
+            printf("\nThe Greatest Number is : %lld",num1);
+        }
+        if(i == 3){
+            printf("\nProgram Ended due to 3 changes in the Greatest Number\n");
+            printf("\nThe Greatest Number is : %lld",num);
+        }
+    }while(i < 3 && num != 0);
 
     return 0;
 }
