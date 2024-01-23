@@ -1,7 +1,7 @@
 Compile manually:
 # Instruction - .exe file names should be all lowercase
 #             - every change within the source code do a save [ctr-s] then do Step 1
-Step 1: input in Terminal - g++ filename.c -o filename.exe 
+Step 1: input in Terminal -> g++ filename.c -o filename.exe 
 Step 2: .\filename.exe
 
 # Go to - w3schools website for these concepts. If not then search in other places
