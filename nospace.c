@@ -8,7 +8,7 @@ int main()
     char text[25], *mtext;
 
     printf("Enter a string: ");
-    scanf(" %[^\n]", text);
+    gets(text);
 
     mtext = modded(text);
 
