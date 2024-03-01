@@ -1,0 +1,187 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    height: 80px;
+}
+
+.content {
+    height: 2000px;
+    background-color: rgb(228, 228, 228);
+}
+
+.anoun {
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 1px;
+    background-color: white;
+    height: 1850px;
+    display: block;
+}
+
+.icon {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.title {
+    padding: 5px;
+    margin-left: 10px;
+    width: 300px;
+    color: green;
+}
+
+.ani {
+    margin-left: 40px;
+    display: inline-block;
+}
+
+.name {
+    font-size: 15px;
+    color: lightblue;
+    margin-left: 10px;
+}
+
+.con1 {
+    border-radius: 15px;
+    margin-top: 20px;
+    width: 1500px;
+    padding: 5px 0;
+    height: 200px;
+    float: right;
+    background-color: aliceblue;
+}
+
+.conimg {
+    width: 150px;
+}
+
+.footer {
+    height: 200px;
+    background-color: green;
+    border-top: 1px solid green;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    width: 400px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.notif {
+    width: 20px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.block {
+    width: 20px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.pfp1 {
+    margin: 20px;
+    width: 100px;
+    border-radius: 100px;
+    border: 1px solid black;
+}
+
+.pfp {
+    width: 20px;
+    float: right;
+    margin-right: 22px;
+    margin-top: 25px;
+    border-radius: 100px;
+}
+
+.id {
+    width: 20px;
+    float: right;
+    margin-right: 70px;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+.line {
+    width: 100%;
+    height: 10px;
+    background-color: yellow;
+}
+
+.nav {
+    overflow: hidden;
+    background-color: green;
+    position: sticky;
+    top: -5px;
+}
+
+.options h4 {
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+    margin: -1px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    display: inline;
+}
+
+.options :hover {
+    background-color: yellow;
+    color: black;
+}
+
+.intext
+.inlink
+.inmod
+.incon {
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.footer ul {
+    margin-top: 10px;
+}
+
+.footer ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 320px;
+    padding: 0 16px;
+}
+
+.footer ul li .aboutus
+.footer ul li .link
+.footer ul li .mod
+.footer ul li .con {
+    width: 100%;
+}
+
+.footer ul li.aboutus > div
+.footer ul li.link > div
+.footer ul li.mod > div
+.footer ul li.con > div {
+    display: block;
+}
+
+.posf {
+    border: 1px sold black;
+    background-color: black;
+    padding: 1px;
+}
+
+.posf p {
+    font-size: 10px;
+    margin-left: 8px;
+    color: white;
+}
+
