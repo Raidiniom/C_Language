@@ -10,6 +10,13 @@ body {
 .content {
     height: 2000px;
     background-color: rgb(228, 228, 228);
+     
+}
+
+.sticky {
+     
+    position: sticky;
+    bottom: -1px;
 }
 
 .anoun {
