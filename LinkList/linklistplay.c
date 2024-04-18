@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node
 {
@@ -14,6 +15,7 @@ void insertAt(NodePtr *list, int data, int position);
 void delFront(NodePtr *list);
 void delLast(NodePtr *list);
 void delAt(NodePtr *list, int position);
+int search(NodePtr list, int data);
 void displaylink(NodePtr list);
 
 // Main
@@ -26,14 +28,16 @@ int main()
     insertRear(&start, 30);
     insertRear(&start, 40);
     insertRear(&start, 50);
-    insertFront(&start, 60);
-
     displaylink(start);
 
-    // Start inserting here!
+    // Inserting
     insertAt(&start, 5, 2);
     displaylink(start);
 
+    insertFront(&start, 60);
+    displaylink(start);
+
+    // Deleting
     delFront(&start);
     displaylink(start);
 
@@ -42,6 +46,9 @@ int main()
     
     delAt(&start, 3);
     displaylink(start);
+
+    // Searching
+    (search(start, 30)) ? printf("It exist"): printf("It does not exist");
 
     return 0;
 }
@@ -142,6 +149,19 @@ void delAt(NodePtr *list, int position)
     
     prev->next = curr->next;
     free(curr);
+}
+
+int search(NodePtr list, int data)
+{
+    while (list->next != NULL)
+    {
+        if (list->data == data)
+        {
+            return 1;
+        }
+        list = list->next;
+    }
+    return -1;
 }
 
 void displaylink(NodePtr list)
