@@ -48,7 +48,7 @@ int main()
     displaylink(start);
 
     // Searching
-    (search(start, 30)) ? printf("It exist"): printf("It does not exist");
+    (search(start, 3) > 0) ? printf("It exist"): printf("It does not exist");
 
     return 0;
 }
