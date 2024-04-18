@@ -4,10 +4,6 @@
 
 int main()
 {
-    Node* start = NULL;
-
-    initLink(&start, 10);
-
 
     return 0;
 }

@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+    int data;
+    struct node *next;
+} Node, *NodePtr;
+
+// Functions
+void insertFront(NodePtr *list, int data);
+void displaylink(NodePtr list);
+void insertAt(NodePtr *list, int data, int position);
+void delFront(NodePtr *list);
+void delLast(NodePtr *list);
+
+// Main
+int main()
+{
+    NodePtr start = NULL;
+
+    insertFront(&start, 10);
+    insertFront(&start, 20);
+    insertFront(&start, 30);
+    insertFront(&start, 40);
+    insertFront(&start, 50);
+    insertFront(&start, 60);
+
+    displaylink(start);
+
+    // Start inserting here!
+    insertAt(&start, 5, 4);
+    delFront(&start);
+    delLast(&start);
+
+    displaylink(start);
+
+    return 0;
+}
+
+
+// Function Definition
+void insertFront(NodePtr *list, int data)
+{
+    NodePtr head = (NodePtr)malloc(sizeof(Node));
+
+    if (head == NULL)
+    {
+        printf("No Memory Allocated");
+    }
+
+    head->data = data;
+    head->next = *list;
+    *list = head;
+}
+
+void insertAt(NodePtr *list, int data, int position)
+{
+    NodePtr head = (NodePtr)malloc(sizeof(Node));
+
+    if (head == NULL)
+    {
+        printf("No Memory Allocated");
+    }
+
+    head->data = data;
+    head->next = NULL;
+
+    NodePtr curr = *list;
+    int postrk = 1;
+    while (curr != NULL && postrk < position - 1)
+    {
+        curr = curr->next;
+        postrk++;
+    }
+    
+    head->next = curr->next;
+    curr->next = head;
+    
+}
+
+void delFront(NodePtr *list)
+{
+    NodePtr head = *list;
+
+    *list = head->next;
+
+    free(head);
+}
+
+void delLast(NodePtr *list)
+{
+    NodePtr head = *list;
+    NodePtr last;
+
+    while (head->next->next != NULL)
+    {
+        head = head->next;
+    }
+    last = head->next;
+    head->next = NULL;
+
+    free(last);
+}
+
+void displaylink(NodePtr list)
+{
+    NodePtr disply = list;
+
+    printf("(");
+    while (disply != NULL)
+    {
+        printf("%d", disply->data);
+        disply = disply->next;
+        if(disply != NULL)
+        {
+            printf(", ");
+        }
+    }
+    printf(")\n");
+}

@@ -4,14 +4,6 @@
 typedef struct node{
     int data;
     struct node *next;
-} Node;
-
-void initLink(Node **link, int data)
-{
-    Node* head = malloc(sizeof(Node));
-
-    head->data = data;
-    head->next = NULL;
-}
+} Node, NodePtr*;
 
 #endif
