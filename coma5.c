@@ -26,6 +26,7 @@ void displayStud (Student s);
 void displayList (StudentList list, int * count);
 int getFemale (StudentList list, int*count);
 void displayFemale (StudentList list, int*count);
+
 int main() {
     int count = 0;
     Name name1 = {"Yousif", "Ceballos"};
