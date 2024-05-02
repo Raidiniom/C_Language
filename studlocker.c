@@ -1,18 +1,8 @@
-/* Instructions:
-    The University of San Carlos has begun rolling out its newest locker technology: GraviLockers.
-    These lockers are capable of fitting any amount of items, for as long as the total weight of all items
-    does not exceed the weight limit of 5 KG. However, during shipping, the lockers' disk drives were damaged,
-    and the firmware that made them work was lost. Luckily, the documentation for the structures remained intact.
-
-    As students of DCIS, USC needs your help. Write the codes for the functions to make the lockers work again.
-    Use the structures defined below.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAXLOCKERS 10
-#define WEIGHTLIMIT 5
+#define WEIGHTLIMIT 10
 
 typedef struct{
     char studID[9];
@@ -37,91 +27,56 @@ typedef struct{
     float totWeight;        /* Total weight of all items in the locker */
 }Locker;
 
-/* Function depositItem(): This function will receive as parameter a Locker, a student ID, and an item to be
-stored. The function will insert the item into the Locker's ItemList, which is sorted by weight. Heavier
-items are stored at the end of the locker's ItemList. Before insertion, please make sure that the student ID
-passed is the same as the student ID of the locker's owner. Also, make sure that the weight of all items,
-including the new item to store, does not exceed the weight limit. */
-
 void depositItem(Locker* L, char studID[], ItemDets newItem)
 {
-    ItemList head = L->IL;
-    while (head != NULL)
+    if(!strcmp(L->owner.studID, studID) && (L->totWeight + newItem.weight) <= WEIGHTLIMIT)
     {
-        L->totWeight += head->item.weight;
-        head = head->nextItem;
-    }
-
-    ItemList newNode = malloc(sizeof(ItemNode));
-    newNode->item = newItem;
-    newNode->nextItem = NULL;
-
-    if (L->IL == NULL)
-    {
-        L->IL = newNode;
-    }
-    else
-    {
-        ItemList prev = NULL;
-        head = L->IL;
-
-        while(head != NULL && head->item.weight < newItem.weight)
+        ItemList newNode = malloc(sizeof(ItemNode));
+        if (newNode != NULL)
         {
-            prev = head;
-            head = head->nextItem;
+            newNode->item = newItem;
+            ItemList *trav;
+            for (trav = &(L->IL); *trav != NULL && (*trav)->item.weight < newItem.weight; trav = &(*trav)->nextItem) {}
+            newNode->nextItem = *trav;
+            *trav = newNode;
+            L->totWeight += newItem.weight;
         }
-
-        if(prev == NULL)
-        {
-            newNode->nextItem = L->IL;
-            L->IL = newNode;
-        }
-        else
-        {
-            prev->nextItem = newNode;
-            newNode->nextItem = head;
-        }
+        
     }
-
-
 }
-
-/* Function getHeavyItems(): This function will receive as parameter a Locker and a weight threshold/limit.
-The function will go through all the items in the passed Locker's ItemList. If any item EXCEEDS the passed
-threshold/limit, store that item into a new ItemList using insertFirst, and delete it from the locker's
-ItemList. Return the ItemList of deleted items to the calling function. */
 
 ItemList getHeavyItems(Locker* L, float limit)
 {
     ItemList heavyList = NULL;
     ItemList prev = NULL;
-    ItemList head = L->IL;
+    ItemList trav = L->IL;
 
-    while(head != NULL)
+    while (trav != NULL)
     {
-        if(head->item.weight > limit)
+        if (trav->item.weight > limit)
         {
-            if(prev == NULL)
+            if (prev == NULL)
             {
-                L->IL = head->nextItem;
+                L->IL = trav->nextItem;
             }
             else
             {
-                prev->nextItem = head->nextItem;
+                prev->nextItem = trav->nextItem;
             }
+            
+            trav->nextItem = heavyList;
+            heavyList = trav;
 
-            head->nextItem = heavyList;
-            heavyList = head;
-
-            head = prev->nextItem;
+            trav = prev->nextItem;
         }
         else
         {
-            prev = head;
-            head = head->nextItem;
+            prev = trav;
+            trav = trav->nextItem;
         }
+        
     }
-
+    
     return heavyList;
 }
 
@@ -143,6 +98,7 @@ int main(void)
     ItemDets item2 = {"Shoes", 0.87};
     ItemDets item3 = {"Laptop", 2.35};
     ItemDets item4 = {"Keyboard", 1.17};
+    ItemDets item5 = {"Philo 1 Book", 3.50};
 
     Locker myLocker = {{"14101941", "Cris Militante", "BSCS"}, NULL, 1, 0};
     ItemList heavyItems;
@@ -151,6 +107,7 @@ int main(void)
     depositItem(&myLocker, "14101941", item2);
     depositItem(&myLocker, "14101941", item3);
     depositItem(&myLocker, "14101941", item1);
+    depositItem(&myLocker, "14101941", item5);
     displayItemList(myLocker.IL);
 
     heavyItems = getHeavyItems(&myLocker, 1.00);
