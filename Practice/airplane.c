@@ -35,7 +35,7 @@ typedef struct
 
 // Functions
 void storeBaggage(Airplane *TP, String id, Baggage bag);
-cargoHold getHeavy(cargoHold *cont);
+cargoHold getHeavy(cargoHold *cont, float hlimit);
 void display(Airplane thisplane);
 
 int main()
@@ -56,14 +56,14 @@ int main()
 
 void storeBaggage(Airplane *TP, String id, Baggage bag)
 {
-    if (!strcmp(TP->details.id, id))
+    if (!strcmp(TP->details.id, id) && (TP->container->bag.weight + bag.weight) <= TP->details.maxCapacity)
     {
-        /* code */
+        cargoHold newNode = malloc(sizeof(cargoSize));
     }
     
 }
 
-cargoHold getHeavy(cargoHold *cont)
+cargoHold getHeavy(cargoHold *cont, float hlimit)
 {
     // 
 }
