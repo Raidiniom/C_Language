@@ -76,6 +76,22 @@ ItemList getHeavyItems(Locker* L, float limit)
         }
         
     }
+
+    // Without Prev
+    // ItemList temp;
+    // ItemList heavyList = NULL;
+    // ItemList *current;
+   
+    // for(current = &(L->IL); *current != NULL;){
+    //      if((*current)->item.weight > limit){
+    //         temp = (*current)->nextItem;
+    //         (*current)->nextItem = heavyList;
+    //         heavyList = *current;
+    //         *current = temp;
+    //     } else {
+    //         current = &(*current)->nextItem;
+    //     }
+    // }
     
     return heavyList;
 }
@@ -96,7 +112,7 @@ int main(void)
 {
     ItemDets item1 = {"Prog 1 Book", 0.35};
     ItemDets item2 = {"Shoes", 0.87};
-    ItemDets item3 = {"Laptop", 2.35};
+    ItemDets item3 = {"Laptop", 2.35};  
     ItemDets item4 = {"Keyboard", 1.17};
     ItemDets item5 = {"Philo 1 Book", 3.50};
 
