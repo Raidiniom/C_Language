@@ -52,10 +52,6 @@ int main()
     
     delAt(&start, 3);
     displaylink(start);
-    (search(start, 30) > 0) ? printf("It exist"): printf("It does not exist");
-    delItem(&start, 20);
-    delItem(&start, 30);
-    displaylink(start);
 
     // Searching
     (search(start, 30) > 0) ? printf("It exist"): printf("It does not exist");
@@ -159,22 +155,6 @@ void delAt(NodePtr *list, int position)
     
     prev->next = curr->next;
     free(curr);
-}
-
-void delItem(NodePtr *list, int deldat)
-{
-    NodePtr curr = *list;
-    NodePtr prev;
-
-    while (curr != NULL && curr->data != deldat)
-    {
-        prev = curr;
-        curr = curr->next;
-    }
-
-    prev->next = curr->next;
-    free(curr);
-    
 }
 
 int search(NodePtr list, int data)
