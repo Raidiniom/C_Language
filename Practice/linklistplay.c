@@ -15,6 +15,8 @@ void insertAt(NodePtr *list, int data, int position);
 void delFront(NodePtr *list);
 void delLast(NodePtr *list);
 void delAt(NodePtr *list, int position);
+void delItem(NodePtr *list, int deldat);
+void swap(NodePtr *list, int pos1, int pos2);
 int search(NodePtr list, int data);
 void displaylink(NodePtr list);
 
@@ -28,6 +30,10 @@ int main()
     insertRear(&start, 30);
     insertRear(&start, 40);
     insertRear(&start, 50);
+    displaylink(start);
+
+    swap(&start, 2, 3);
+    printf("Swap ");
     displaylink(start);
 
     // Inserting
@@ -46,9 +52,13 @@ int main()
     
     delAt(&start, 3);
     displaylink(start);
+    (search(start, 30) > 0) ? printf("It exist"): printf("It does not exist");
+    delItem(&start, 20);
+    delItem(&start, 30);
+    displaylink(start);
 
     // Searching
-    (search(start, 3) > 0) ? printf("It exist"): printf("It does not exist");
+    (search(start, 30) > 0) ? printf("It exist"): printf("It does not exist");
 
     return 0;
 }
@@ -149,6 +159,22 @@ void delAt(NodePtr *list, int position)
     
     prev->next = curr->next;
     free(curr);
+}
+
+void delItem(NodePtr *list, int deldat)
+{
+    NodePtr curr = *list;
+    NodePtr prev;
+
+    while (curr != NULL && curr->data != deldat)
+    {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    prev->next = curr->next;
+    free(curr);
+    
 }
 
 int search(NodePtr list, int data)

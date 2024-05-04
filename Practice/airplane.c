@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef char String[50];
+typedef char String[20];
 
 typedef struct
 {
@@ -48,6 +48,14 @@ int main()
 
     Airplane PhiAir = {{"73657074", "Birtha", 50}, NULL, 0};
 
+    storeBaggage(&PhiAir, "73657074", bag1);
+    storeBaggage(&PhiAir, "73657074", bag2);
+    storeBaggage(&PhiAir, "73657074", bag3);
+    storeBaggage(&PhiAir, "73657074", bag4);
+    storeBaggage(&PhiAir, "73657074", bag5);
+    
+    display(PhiAir);
+
     cargoHold heavyCargo;
 
     return 0;
@@ -56,12 +64,19 @@ int main()
 
 void storeBaggage(Airplane *TP, String id, Baggage bag)
 {
-    if (!strcmp(TP->details.id, id) && (TP->container->bag.weight + bag.weight) <= TP->details.maxCapacity)
+    if (!strcmp(TP->details.id, id) && (TP->currCapacity + bag.weight) <= TP->details.maxCapacity)
     {
         cargoHold newNode = malloc(sizeof(cargoSize));
+        if (newNode != NULL)
+        {
+            newNode->bag = bag;
+            newNode->nextbag = TP->container; // Link the new node to the existing cargo hold
+            TP->container = newNode; // Update the cargo hold pointer
+            TP->currCapacity += bag.weight;
+        }
     }
-    
 }
+
 
 cargoHold getHeavy(cargoHold *cont, float hlimit)
 {
@@ -70,5 +85,11 @@ cargoHold getHeavy(cargoHold *cont, float hlimit)
 
 void display(Airplane thisplane)
 {
-    // 
+    cargoHold trav = thisplane.container;
+    while (trav != NULL)
+    {
+        printf("%s %.2f", trav->bag.item, trav->bag.weight);
+        trav = trav->nextbag;
+    }
+    
 }
