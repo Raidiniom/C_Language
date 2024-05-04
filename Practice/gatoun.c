@@ -11,6 +11,7 @@ typedef struct gNode
 void add(NodePtr *list, int data);
 void addRear(NodePtr *list, int data);
 void swapfront(NodePtr *list);
+void swaprear(NodePtr *list);
 void swapPos(NodePtr *list, int pos1, int pos2);
 void display(NodePtr list);
 
@@ -35,6 +36,11 @@ int main()
     swapfront(&myList);
 
     printf("Swapped Front: ");
+    display(myList);
+
+    swaprear(&myList);
+
+    printf("Swapped Rear: ");
     display(myList);
 
     return 0;
@@ -95,6 +101,21 @@ void swapfront(NodePtr *list)
     prev->next = curr->next;
     curr->next = prev;
     *list = curr;
+}
+
+void swaprear(NodePtr *list)
+{
+    NodePtr prev = NULL, curr = *list;
+
+    while (curr->next->next != NULL)
+    {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    prev->next = curr->next;
+    curr->next = curr->next->next;
+    prev->next->next = curr;
 }
 
 void swapPos(NodePtr *list, int pos1, int pos2)
