@@ -152,7 +152,7 @@ void delAt(NodePtr *list, int position)
     NodePtr prev;
 
     int postrk = 1;
-    while (curr != NULL && postrk < position - 1)
+    while (curr != NULL && postrk < position)
     {
         prev = curr;
         curr = curr->next;

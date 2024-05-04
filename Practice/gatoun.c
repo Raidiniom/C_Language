@@ -10,6 +10,7 @@ typedef struct gNode
 // Header Functions
 void add(NodePtr *list, int data);
 void addRear(NodePtr *list, int data);
+void insert(NodePtr *list, int data, int pos);
 void swapfront(NodePtr *list);
 void swaprear(NodePtr *list);
 void swapPos(NodePtr *list, int pos1, int pos2);
@@ -41,6 +42,11 @@ int main()
     swaprear(&myList);
 
     printf("Swapped Rear: ");
+    display(myList);
+
+    insert(&myList, 10, 5);
+
+    printf("Insert: ");
     display(myList);
 
     return 0;
@@ -88,6 +94,26 @@ void addRear(NodePtr *list, int data)
         trav = trav->next;
     }
     
+    trav->next = newNode;
+    
+}
+
+void insert(NodePtr *list, int data, int pos)
+{
+    NodePtr newNode = malloc(sizeof(Node));
+
+    newNode->data = data;
+    newNode->next = NULL;
+
+    int trkpos = 0;
+    NodePtr trav = *list;
+    while (trav != NULL && trkpos < pos - 1)
+    {
+        trkpos++;
+        trav = trav->next;
+    }
+    
+    newNode->next = trav->next;
     trav->next = newNode;
     
 }
