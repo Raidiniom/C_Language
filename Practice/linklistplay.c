@@ -15,6 +15,7 @@ void insertAt(NodePtr *list, int data, int position);
 void delFront(NodePtr *list);
 void delLast(NodePtr *list);
 void delAt(NodePtr *list, int position);
+void deleteItem(NodePtr *list, int deldata);
 int search(NodePtr list, int data);
 void displaylink(NodePtr list);
 
@@ -45,6 +46,9 @@ int main()
     displaylink(start);
     
     delAt(&start, 3);
+    displaylink(start);
+
+    deleteItem(&start, 30);
     displaylink(start);
 
     // Searching
@@ -149,6 +153,22 @@ void delAt(NodePtr *list, int position)
     
     prev->next = curr->next;
     free(curr);
+}
+
+void deleteItem(NodePtr *list, int deldata)
+{
+    NodePtr *temp, trav;
+
+    trav = *list;
+    while (trav->next != NULL && trav->data != deldata)
+    {
+        trav = trav->next;
+    }
+
+    (*temp) = trav;
+    trav = (*temp)->next;
+
+    free(temp);
 }
 
 int search(NodePtr list, int data)

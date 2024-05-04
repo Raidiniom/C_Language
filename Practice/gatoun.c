@@ -41,13 +41,13 @@ void add(Class *L, Student enrolle)
     trav->next = newNode;
 }
 
-void insert(Class *L,int pos, Student enrolle)
+void insert(Class *L, int pos, Student enrolle)
 {
     Class newNode = malloc(sizeof(classList));
     newNode->carolain = enrolle;
     Class trav = *L;
     int trkpos = 1;
-    while (trav != NULL && trkpos < pos)
+    while (trav != NULL && trkpos < pos - 1)
     {
         trkpos++;
         trav = trav->next;
@@ -83,12 +83,12 @@ int main()
     add(&IT, stud3);
     add(&IT, stud4);
 
-    printf("Initail List:\n");
+    printf("\nInitail List:\n");
     display(IT);
 
     insert(&IT, 3, stud5);
 
-    printf("Inserted List:\n");
+    printf("\nInserted List:\n");
     display(IT);
 
     return 0;
