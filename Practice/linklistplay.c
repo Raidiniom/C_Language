@@ -63,16 +63,18 @@ int main()
 // Function Definition
 void insertRear(NodePtr *list, int data)
 {
-    NodePtr newData = (NodePtr)malloc(sizeof(Node));
+    NodePtr newData = malloc(sizeof(Node));
     newData->data = data;
     newData->next = NULL;
 
+    // If the list is initialy empty
     if (*list == NULL)
     {
         *list = newData;
         return;
     }
     
+    // Traverses to the last of the link list
     NodePtr curr = *list;
     while (curr->next != NULL)
     {
@@ -84,21 +86,24 @@ void insertRear(NodePtr *list, int data)
 
 void insertFront(NodePtr *list, int data)
 {
-    NodePtr head = (NodePtr)malloc(sizeof(Node));
+    NodePtr head =  malloc(sizeof(Node));
 
+    // If malloc failed
     if (head == NULL)
     {
         printf("No Memory Allocated");
     }
 
+    // inserts the data to the head
     head->data = data;
+    // uses the NULL of the head at the back
     head->next = *list;
     *list = head;
 }
 
 void insertAt(NodePtr *list, int data, int position)
 {
-    NodePtr head = (NodePtr)malloc(sizeof(Node));
+    NodePtr head =  malloc(sizeof(Node));
 
     head->data = data;
     head->next = NULL;
