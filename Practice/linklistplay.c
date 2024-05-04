@@ -98,6 +98,7 @@ void insertFront(NodePtr *list, int data)
     head->data = data;
     // uses the NULL of the head at the back
     head->next = *list;
+    // the list from the main will be pointing to the new link list
     *list = head;
 }
 
