@@ -16,7 +16,6 @@ void delFront(NodePtr *list);
 void delLast(NodePtr *list);
 void delAt(NodePtr *list, int position);
 void delItem(NodePtr *list, int deldat);
-void swap(NodePtr *list, int pos1, int pos2);
 int search(NodePtr list, int data);
 void displaylink(NodePtr list);
 
@@ -32,25 +31,26 @@ int main()
     insertRear(&start, 50);
     displaylink(start);
 
-    swap(&start, 2, 3);
-    printf("Swap ");
-    displaylink(start);
-
     // Inserting
     insertAt(&start, 5, 2);
+    printf("\nInsert At: ");
     displaylink(start);
 
     insertFront(&start, 60);
+    printf("\nInsert Front: ");
     displaylink(start);
 
     // Deleting
     delFront(&start);
+    printf("\nDelete Front: ");
     displaylink(start);
 
     delLast(&start);
+    printf("\nDelete Last: ");
     displaylink(start);
     
     delAt(&start, 3);
+    printf("\nDelete At: ");
     displaylink(start);
 
     // Searching
@@ -146,7 +146,7 @@ void delAt(NodePtr *list, int position)
     NodePtr prev;
 
     int postrk = 1;
-    while (curr != NULL && postrk < position)
+    while (curr != NULL && postrk < position - 1)
     {
         prev = curr;
         curr = curr->next;
