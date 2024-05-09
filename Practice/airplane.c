@@ -1,95 +1,100 @@
-/*
-    Airplane baggage problem
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef char String[20];
+typedef char String[50];
 
-typedef struct
-{
-    String id;
-    String craftName;
-    float maxCapacity;
-} Info;
+typedef struct {
+    String fname;
+    String lname;
+} Name;
 
-typedef struct
-{
-    String item;
+typedef struct {
+    Name owner;
     float weight;
-} Baggage;
+} Luggage;
 
-typedef struct bagSpot
-{
-    Baggage bag;
-    struct bagSpot *nextbag;
-}cargoSize, *cargoHold;
+typedef struct node{
+    Luggage bag;
+    struct node *next;
+} nodeSize, *cargoHold;
 
-typedef struct
-{
-    Info details;
-    cargoHold container;
-    float currCapacity;
-} Airplane;
-
-// Functions
-void storeBaggage(Airplane *TP, String id, Baggage bag);
-cargoHold getHeavy(cargoHold *cont, float hlimit);
-void display(Airplane thisplane);
+cargoHold populateList(cargoHold *list);
+void insert(cargoHold *list, Luggage bag);
+void search(cargoHold list, float weight);
+void displayList(cargoHold list);
 
 int main()
 {
-    Baggage bag1 = {"BlueRec", 1.87};
-    Baggage bag2 = {"BlueSqu", 2.00};
-    Baggage bag3 = {"RedRec", 0.59};
-    Baggage bag4 = {"RedSqu", 1.25};
-    Baggage bag5 = {"PurpleRec", 0.37};
+    cargoHold cebuAir;
+    cebuAir = populateList(&cebuAir);
 
-    Airplane PhiAir = {{"73657074", "Birtha", 50}, NULL, 0};
+    displayList(cebuAir);
 
-    storeBaggage(&PhiAir, "73657074", bag1);
-    storeBaggage(&PhiAir, "73657074", bag2);
-    storeBaggage(&PhiAir, "73657074", bag3);
-    storeBaggage(&PhiAir, "73657074", bag4);
-    storeBaggage(&PhiAir, "73657074", bag5);
-    
-    display(PhiAir);
+    printf("Searching for Heavy Luggage: \n");
+    search(cebuAir, 2.00);
 
-    cargoHold heavyCargo;
-
-    return 0;
+    return 0; 
 }
 
-
-void storeBaggage(Airplane *TP, String id, Baggage bag)
+cargoHold populateList(cargoHold *list)
 {
-    if (!strcmp(TP->details.id, id) && (TP->currCapacity + bag.weight) <= TP->details.maxCapacity)
-    {
-        cargoHold newNode = malloc(sizeof(cargoSize));
-        if (newNode != NULL)
-        {
-            newNode->bag = bag;
-            newNode->nextbag = TP->container; // Link the new node to the existing cargo hold
-            TP->container = newNode; // Update the cargo hold pointer
-            TP->currCapacity += bag.weight;
-        }
-    }
+    cargoHold hold = NULL;
+
+    Luggage bag1 = {{"Ratilla", "Voltaire"}, 5.02};
+    Luggage bag2 = {{"Gerozaga", "John"}, 2.3};
+    Luggage bag3 = {{"Dianco", "Clarence"}, 4.25};
+    Luggage bag4 = {{"Ceballos", "Yousif"}, 1.60};
+    Luggage bag5 = {{"Bocaqosa", "Charles"}, 3.20};
+    Luggage bag6 = {{"Derama", "Summi"}, 1.12};
+
+    insert(&hold, bag1);
+    insert(&hold, bag2);
+    insert(&hold, bag3);
+    insert(&hold, bag4);
+    insert(&hold, bag5);
+    insert(&hold, bag6);
+
+    return hold;
 }
 
-
-cargoHold getHeavy(cargoHold *cont, float hlimit)
+void insert(cargoHold *list, Luggage bag)
 {
-    // 
+    cargoHold newNode = malloc(sizeof(nodeSize));
+
+    newNode->bag = bag;
+    newNode->next = *list;
+
+    *list = newNode;
 }
 
-void display(Airplane thisplane)
+void search(cargoHold list, float weight)
 {
-    cargoHold trav = thisplane.container;
+    cargoHold trav = list;
     while (trav != NULL)
     {
-        printf("%s %.2f", trav->bag.item, trav->bag.weight);
-        trav = trav->nextbag;
+        if (trav->bag.weight >= weight)
+        {
+            printf("%s, %s | %.2f\n", trav->bag.owner.fname, trav->bag.owner.lname, trav->bag.weight);
+            trav = trav->next;
+        }
+        else
+        {
+            trav = trav->next;
+        }
+        
+    }
+    
+}
+
+void displayList(cargoHold list)
+{
+    cargoHold trav = list;
+    printf("Owner | Luggage Weight\n");
+    while (trav != NULL)
+    {
+        printf("%s, %s | %.2f\n", trav->bag.owner.lname, trav->bag.owner.fname, trav->bag.weight);
+        trav = trav->next;
     }
     
 }
