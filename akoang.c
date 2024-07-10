@@ -2,7 +2,9 @@
 
 int main(){
 
-    printf("Pacheck if mo gana ang github nako sa laptop");
+    for(int i = 5; i > 0; i--) {
+        printf("%d \n", i);
+    }
 
     return 0;
 }
