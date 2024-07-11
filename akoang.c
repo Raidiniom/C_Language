@@ -1,10 +1,22 @@
 #include <stdio.h>
 
 int main(){
+    int height, width;
 
-    for(int i = 5; i > 0; i--) {
-        printf("%d \n", i);
+    // printf("Input Height: ");
+    // scanf("%d", &height);
+    // printf("Input Width: ");
+    // scanf("%d", &width);
+
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
     }
+    
 
     return 0;
 }
