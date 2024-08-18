@@ -3,20 +3,20 @@
 int main(){
     int height, width;
 
-    // printf("Input Height: ");
-    // scanf("%d", &height);
-    // printf("Input Width: ");
-    // scanf("%d", &width);
+    printf("Input Height: ");
+    scanf("%d", &height);
+    printf("Input Width: ");
+    scanf("%d", &width);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < width; j++)
         {
             printf("*");
         }
         printf("\n");
     }
-    
+
 
     return 0;
 }
