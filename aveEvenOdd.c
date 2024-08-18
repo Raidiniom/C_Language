@@ -20,8 +20,9 @@ int main(){
     ave_even = sum_even / count_even;
     ave_odd = sum_odd / count_odd;
 
+    printf("%10s| Average | Total | Count |\n"," ");
     printf("Even part: %d %d %d", ave_even, sum_even, count_even);
-    printf("\nOdd part: %d %d %d", ave_odd, sum_odd, count_odd);
+    printf("\nOdd  part: %d %d %d\n", ave_odd, sum_odd, count_odd);
     
     return 0;
 }
