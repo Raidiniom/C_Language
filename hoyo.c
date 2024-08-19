@@ -36,6 +36,7 @@ int main()
             case 2:
                 stamina(hours);
             break;
+            
             case 3:
                 originalresin(hours);
             break;
