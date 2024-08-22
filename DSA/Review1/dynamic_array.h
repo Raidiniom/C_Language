@@ -1,5 +1,5 @@
-#ifndef DYNAMIC_ARRAY.H
-#define DYNAMIC_ARRAY.H
+#ifndef DYNAMIC_ARRAY_H
+#define DYNAMIC_ARRAY_H
 
 #include <stdbool.h>
 
@@ -9,7 +9,7 @@ typedef struct node
     struct node *next;
 } *Node;
 
-Node* create_Node();
+Node create_Node();
 
 bool insert_Front(Node *list, int data);
 bool insert_Rear(Node *list, int data);

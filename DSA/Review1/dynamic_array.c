@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "dynamic_array.h"
 
-Node* create_Node() {
+Node create_Node() {
     Node start_node = malloc(sizeof(Node));
 
     if (start_node != NULL)
@@ -15,7 +15,19 @@ Node* create_Node() {
     return start_node;
 };
 
-bool insert_Front(Node *list, int data);
+bool insert_Front(Node *list, int data) {
+    Node new_node = create_Node();
+
+    if (list != NULL)
+    {
+        new_node->data = data;
+        new_node->next = list;
+
+        *list = new_node;
+    }
+    
+}
+
 bool insert_Rear(Node *list, int data);
 bool insert_At(Node *list, int data);
 
