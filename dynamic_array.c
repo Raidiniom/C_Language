@@ -21,10 +21,13 @@ bool insert_Front(Node *list, int data) {
     if (list != NULL)
     {
         new_node->data = data;
-        new_node->next = list;
+        new_node->next = *list;
 
         *list = new_node;
+        return true;
     }
+
+    return false;
     
 }
 
