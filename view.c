@@ -4,15 +4,22 @@
 
 int main()
 {
-    Node head = create_Node();
+    Node head = NULL;
 
     display_Link(head);
 
-    insert_Front(&head, 11);
-    insert_Front(&head, 12);
-    insert_Front(&head, 13);
-    insert_Front(&head, 14);
-    insert_Front(&head, 15);
+    for (int i = 0; i < 9; i++)
+    {
+        insert_Front(&head, 10 + i);
+    }
+    
+    display_Link(head);
+
+    insert_Rear(&head, 78);
+
+    display_Link(head);
+
+    insert_At(&head, 55, 5);
 
     display_Link(head);
 

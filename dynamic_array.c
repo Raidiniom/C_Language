@@ -3,20 +3,8 @@
 #include <stdbool.h>
 #include "dynamic_array.h"
 
-Node create_Node() {
-    Node start_node = malloc(sizeof(Node));
-
-    if (start_node != NULL)
-    {
-        start_node->next = NULL;
-    }
-    
-
-    return start_node;
-};
-
 bool insert_Front(Node *list, int data) {
-    Node new_node = create_Node();
+    Node new_node = malloc(sizeof(Node));
 
     if (list != NULL)
     {
@@ -31,11 +19,67 @@ bool insert_Front(Node *list, int data) {
     
 }
 
-bool insert_Rear(Node *list, int data);
-bool insert_At(Node *list, int data);
+bool insert_Rear(Node *list, int data) {
+    Node new_node = malloc(sizeof(Node));
 
-bool delete_Front(Node *list);
-bool delete_Rear(Node *list);
+    if (list != NULL)
+    {
+        new_node->data = data;
+        new_node->next = NULL;
+
+        Node trav = *list;
+        while (trav->next != NULL)
+        {
+            trav = trav->next;
+        }
+        
+        trav->next = new_node;
+    
+        return true;
+    }
+    
+    return false;
+}
+
+bool insert_At(Node *list, int data, int position) {
+    Node new_node = malloc(sizeof(Node));
+
+    if (list != NULL)
+    {
+        new_node->data = data;
+
+        Node trav = *list;
+        for (int i = 0; trav != NULL && i < position; i++)
+        {
+            trav = trav->next;
+        }
+
+        new_node->next = trav->next;
+        trav->next = new_node;
+
+        return true;
+        
+    }
+
+    return false;
+    
+}
+
+bool delete_Front(Node *list) {
+    if (list != NULL)
+    {
+        Node temp = (*list)->next;
+        free(*list);
+
+        *list = temp;
+    }
+    
+}
+
+bool delete_Rear(Node *list) {
+    // 
+}
+
 bool delete_At(Node *list, int position);
 bool delete_Item(Node *list, int item);
 
@@ -56,4 +100,4 @@ void display_Link(Node list) {
     }
     
     printf("]\n\n");
-};
+}

@@ -95,7 +95,6 @@ void addRear(NodePtr *list, int data)
     }
     
     trav->next = newNode;
-    
 }
 
 void insert(NodePtr *list, int data, int pos)

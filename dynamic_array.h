@@ -9,11 +9,9 @@ typedef struct node
     struct node *next;
 } *Node;
 
-Node create_Node();
-
 bool insert_Front(Node *list, int data);
 bool insert_Rear(Node *list, int data);
-bool insert_At(Node *list, int data);
+bool insert_At(Node *list, int data, int position);
 
 bool delete_Front(Node *list);
 bool delete_Rear(Node *list);
