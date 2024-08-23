@@ -1,9 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dynamic_array.c"
+#include "static_array.c"
+
+void dynamic();
 
 int main()
 {
+    
+
+    return 0;
+}
+
+void dynamic() {
     Node head = NULL;
 
     printf("----Start of Inserting---- \n");
@@ -43,6 +52,4 @@ int main()
     search_Item(head, 10);
 
     free(head);
-
-    return 0;
 }

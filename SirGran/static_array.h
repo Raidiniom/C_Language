@@ -1,6 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "static_array.h"
+#ifndef STATIC_ARRAY_H
+#define STATIC_ARRAY_H
+
+#define MAX 10
+
+typedef struct {
+    int count;
+    int list[MAX];
+} array;
 
 void insert_front(array list, int data);
 void insert_rear(array list, int data);
@@ -11,10 +17,6 @@ void delete_rear(array list);
 void delete_at(array list, int position);
 void delete_item(array list, int item);
 
-void display_array(array list) {
-    for (int i = 0; i < list.count; i++)
-    {
-        printf("%d", list.list[i]);
-    }
-    
-}
+void display_array(array list);
+
+#endif
