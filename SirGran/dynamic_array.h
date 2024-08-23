@@ -18,7 +18,7 @@ bool delete_Rear(Node *list);
 bool delete_At(Node *list, int position);
 bool delete_Item(Node *list, int item);
 
-bool search_Link(Node list, int search_item);
+void search_Item(Node list, int search_item);
 
 void display_Link(Node list);
 
