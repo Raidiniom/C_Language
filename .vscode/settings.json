@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "static_array.h": "c",
+        "dyanmic_array.h": "c"
     }
 }
