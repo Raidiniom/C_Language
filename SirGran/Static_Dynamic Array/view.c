@@ -8,11 +8,11 @@ void static_array();
 
 int main()
 {
-    // printf("\n\nDynamic Array\n");
-    // dynamic_array();
+    printf("\n\nDynamic Array\n");
+    dynamic_array();
 
-    printf("\n\nStatic Array\n");
-    static_array();
+    // printf("\n\nStatic Array\n");
+    // static_array();
 
     return 0;
 }
