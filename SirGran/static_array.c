@@ -11,13 +11,25 @@ array init_array() {
 }
 
 void insert_front(array *list, int data) {
+    if (list->count == 0)
+    {
+        list->list[0] = data;
+    }
+    
     if (list->count != MAX)
     {
-        list->list[list->count++] = data;
+        for (int i = list->count; i > 0; i--)
+        {
+            list->list[i] = list->list[i - 1];
+        }
+        
+        list->list[0] = data;
+        list->count++;
     }
     
 }
 
+// Also known as Push in Stacks
 void insert_rear(array *list, int data) {
     if (list->count != MAX)
     {
@@ -56,6 +68,7 @@ void delete_front(array *list) {
     }
 }
 
+// Also known as Pop in Stacks
 void delete_rear(array *list) {
     if (list->count > 0) {
         

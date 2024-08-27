@@ -8,8 +8,8 @@ void static_array();
 
 int main()
 {
-    printf("\n\nDynamic Array\n");
-    dynamic_array();
+    // printf("\n\nDynamic Array\n");
+    // dynamic_array();
 
     printf("\n\nStatic Array\n");
     static_array();
@@ -65,16 +65,20 @@ void static_array() {
     printf("Inserting Data: \n");
     display_array(start);
 
-    for (int i = 5; i > 0; i--)
+    for (int i = 0; i < 5; i++)
     {
         insert_front(&start, i);
     }
-    
-    insert_rear(&start, 6);
-    insert_rear(&start, 7);
-    insert_at(&start, 50, 5);
-
     display_array(start);
+    
+    // insert_rear(&start, 6);
+    // display_array(start);
+    // insert_rear(&start, 7);
+    // display_array(start);
+    // insert_at(&start, 50, 5);
+    // display_array(start);
+    // insert_front(&start, 80);
+    // display_array(start);
 
     printf("\nDeleting Data: \n");
     delete_front(&start);
