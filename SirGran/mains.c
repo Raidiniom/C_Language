@@ -22,8 +22,8 @@ int main() {
     ITroom = getStudent(USC, "BSIT");
     display(ITroom);
 
-    arrangeStudent(&USC);
-    display(USC);
+    // arrangeStudent(&USC);
+    // display(USC);
 
     return 0;
 }
