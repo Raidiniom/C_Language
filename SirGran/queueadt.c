@@ -48,7 +48,12 @@ bool isEmpty(QueueADT que) {
 bool isFull(QueueADT que) {
     return (que.rear + 2) % que.max == que.front;
 }
-void makeEmpty(QueueADT *que);
+
+// Empties the list
+void makeEmpty(QueueADT *que) {
+    que->front = 1;
+    que->rear = 0;
+}
 
 // Insert_Rear
 bool enQue(QueueADT *que, Student stud) {
@@ -67,8 +72,7 @@ bool enQue(QueueADT *que, Student stud) {
 bool deQue(QueueADT *que) {
     if (!isEmpty(*que))
     {
-        que->front -= 1;
-        que->rear -= 1;
+        que->front = (que->front + 1) % que->max;
 
         return true;
     }
@@ -76,7 +80,7 @@ bool deQue(QueueADT *que) {
 }
 
 Student studFront(QueueADT que) {
-    return que.studList[que.rear - 1];
+    return que.studList[que.front];
 }
 
 // Traversing through the Array

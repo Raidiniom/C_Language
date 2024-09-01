@@ -9,6 +9,7 @@
         "algorithm": "c",
         "format": "c",
         "stacks.h": "c",
-        "queueadt.h": "c"
+        "queueadt.h": "c",
+        "random": "c"
     }
 }

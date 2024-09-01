@@ -13,6 +13,7 @@ int main() {
     Student stud6 = createStudent(6, createName("Fati", "San"), false, "BSIS", 2);
     Student stud7 = createStudent(5, createName("Vade", "May"), false, "BSIS", 2);
     Student stud8 = createStudent(6, createName("Jacq", "Jui"), false, "BSIS", 2);
+    Student stud9 = createStudent(5, createName("Filler1", "Per1"), false, "NULL", 2);
 
     QueueADT myQueue = createQueue(10);
 
@@ -24,6 +25,7 @@ int main() {
     enQue(&myQueue, stud6);
     enQue(&myQueue, stud7);
     enQue(&myQueue, stud8);
+    enQue(&myQueue, stud9);
 
     printf("EnQueue: \n");
     // displayT(myQueue);
@@ -35,6 +37,12 @@ int main() {
     // displayT(myQueue);
 
     displayNT(myQueue);
+    printf("Is the Array Full? %s\n", (isFull(myQueue)) ? "Yes" : "No");
+
+    printf("Who is In Front? %s %s\n", studFront(myQueue).studName.fname, studFront(myQueue).studName.lname);
+
+    makeEmpty(&myQueue);
+    printf("Is the Array Empty? %s\n", (isEmpty(myQueue)) ? "Yes" : "No");
 
 
     return 0;
