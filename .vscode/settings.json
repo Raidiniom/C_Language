@@ -8,6 +8,7 @@
         "string.h": "c",
         "algorithm": "c",
         "format": "c",
-        "stacks.h": "c"
+        "stacks.h": "c",
+        "queueadt.h": "c"
     }
 }

@@ -92,34 +92,34 @@ Stacks getStudent(Stacks origin, String program) {
     return hold;
 }
 
-// void arrangeStudent(Stacks *origin) {
-//     Student studList[(*origin).count];
-//     Student temp;
+void arrangeStudent(Stacks *origin) {
+    Student studList[(*origin).count];
+    Student temp;
 
-//     for (int i = 0; i < (*origin).count; i++)
-//     {
-//         studList[i] = peek(*origin);
-//         pop(origin);
-//     }
+    for (int i = 0; i < (*origin).count; i++)
+    {
+        studList[i] = peek(*origin);
+        pop(origin);
+    }
     
 
-//     while (!isEmpty(*origin))
-//     {
-//         for (int i = 0; i < (*origin).count-1; i++) {
-//             for (int j = 0; j < (*origin).count-i-1; j++) {
-//                 if (strcmp(studList[j].studName, studList[j+1].studName) > 0) {
-//                     // Swap the students
-//                     temp = studList[j];
-//                     studList[j] = studList[j+1];
-//                     studList[j+1] = temp;
-//                 }
-//             }
-//         }
-//     }
+    while (!isEmpty(*origin))
+    {
+        for (int i = 0; i < (*origin).count-1; i++) {
+            for (int j = 0; j < (*origin).count-i-1; j++) {
+                if (strcmp(studList[j].studName, studList[j+1].studName) > 0) {
+                    // Swap the students
+                    temp = studList[j];
+                    studList[j] = studList[j+1];
+                    studList[j+1] = temp;
+                }
+            }
+        }
+    }
     
-//     for (int i = 0; i < (*origin).count; i++)
-//     {
-//         push(origin, studList[i]);
-//     }
+    for (int i = 0; i < (*origin).count; i++)
+    {
+        push(origin, studList[i]);
+    }
     
-// }
+}
