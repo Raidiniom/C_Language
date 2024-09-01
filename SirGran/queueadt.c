@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "queueadt.h"
 
-//  Helps Creating the Student Details
+//  =====Helps Creating the Student Details=====
 Name createName(String fname, String lname) {
     Name initName;
 
@@ -25,14 +25,9 @@ Student createStudent(int id, Name studName, bool sex, String program, int study
 
     return initStudent;
 }
+// ========================================
 
-void initQueue(QueueADT *que, int max) {
-    que->max = max;
-    que->studList = malloc(sizeof(Student) * max);
-    que->front = 1;
-    que->rear = 0;
-}
-
+// Initialize the Queue
 QueueADT createQueue(int max) {
     QueueADT initQue;
 
@@ -44,37 +39,76 @@ QueueADT createQueue(int max) {
     return initQue;
 }
 
-// 
+// Check if the Queue is Empty or not
 bool isEmpty(QueueADT que) {
     return (que.rear + 1) % que.max == que.front;
 }
+
+// Check if the Queue is Full or not
 bool isFull(QueueADT que) {
     return (que.rear + 2) % que.max == que.front;
 }
 void makeEmpty(QueueADT *que);
 
-// 
+// Insert_Rear
 bool enQue(QueueADT *que, Student stud) {
     if (!isFull(*que))
     {
         que->rear = (que->rear + 1) % que->max;
-        que->front = (que->front + 2) % que->max;
 
-        que->studList[++(que->rear)] = stud;
+        que->studList[que->rear] = stud;
 
         return true;
     }
     return false;
 }
-bool deQue(QueueADT *que);
-Student studFront(QueueADT que);
 
-// 
-void displayT(QueueADT que) {
-    printf("Index | Name\n");
-    for (int i = 0; i < que.max; i++)
+// Delete_Front
+bool deQue(QueueADT *que) {
+    if (!isEmpty(*que))
     {
-        printf("%d   %s\n", i, que.studList[i].studName.fname);
+        que->front -= 1;
+        que->rear -= 1;
+
+        return true;
+    }
+    return false;
+}
+
+Student studFront(QueueADT que) {
+    return que.studList[que.rear - 1];
+}
+
+// Traversing through the Array
+void displayT(QueueADT que) {
+    printf("%s%5s%s%5s%s\n", "Index", " ", "Full Name", " ", "Program");
+    for (int i = 0; i <= que.rear; i++)
+    {
+        printf("%d%8s%s, %s%5s%s\n", i," ", que.studList[i].studName.fname, que.studList[i].studName.lname, " ", que.studList[i].program);
     }
 }
-void displayNT(QueueADT que);
+
+// Using Enqueue and Dequeue to display the queue
+void displayNT(QueueADT que) {
+    // int rear = que.rear;
+    // Student hold;
+
+    // printf("Non-Traversal:\n");
+    // while (rear != 0)
+    // {
+    //     hold = que.studList[rear];
+    //     printf("%s %s %s %s\n", hold.studName.fname, hold.studName.lname, hold.program, (hold.sex) ? "Male":"Female");
+    //     deQue(&que);
+    //     rear--;
+    // }
+    // ^ Old Solution ^
+
+    Student temp;
+    while (!isEmpty(que))
+    {
+        temp = studFront(que);
+        printf("%s %s %s %s\n", temp.studName.fname, temp.studName.lname, temp.program, (temp.sex) ? "Male":"Female");
+        deQue(&que);
+    }
+    // ^ New Solution ^
+}
