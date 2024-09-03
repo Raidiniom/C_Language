@@ -28,8 +28,16 @@ void debugQueue(Queue q) {
     
 }
 
-void visualizeQueue(Queue q) {
-    // 
+void visualizeQueue(Queue *q) {
+    NodePTR comp = q->tail;
+
+    while (comp->Elem.Stud_id != q->head->Elem.Stud_id)
+    {   
+        enQueue(q, front(*q));
+        printf("%d %s\n", front(*q).Stud_id, front(*q).Stud_name.fname);
+        deQueue(q);
+    }
+    
 }
 
 bool enQueue(Queue *q, Data d) {
@@ -52,7 +60,17 @@ bool enQueue(Queue *q, Data d) {
 }
 
 bool deQueue(Queue *q) {
-    // 
+    NodePTR temp;
+
+    if (!isEmpty(*q))
+    {
+        temp = q->head->next;
+        free(q->head);
+        q->head = temp;
+
+        return true;
+    }
+    return false;
 }
 
 Data front(Queue q) {

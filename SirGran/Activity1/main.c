@@ -21,7 +21,9 @@ int main() {
     enQueue(&q, stud5);
     enQueue(&q, stud6);
 
-    debugQueue(q);
+    // debugQueue(q);
+
+    visualizeQueue(&q);
 
     return 0;
 }
