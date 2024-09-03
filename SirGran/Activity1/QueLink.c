@@ -29,14 +29,22 @@ void debugQueue(Queue q) {
 }
 
 void visualizeQueue(Queue *q) {
-    NodePTR comp = q->tail;
+    if (!isEmpty(*q))
+    {
+        NodePTR comp = q->tail;
 
-    while (comp->Elem.Stud_id != q->head->Elem.Stud_id)
-    {   
-        enQueue(q, front(*q));
-        printf("%d %s\n", front(*q).Stud_id, front(*q).Stud_name.fname);
-        deQueue(q);
+        while (comp->Elem.Stud_id != q->head->Elem.Stud_id)
+        {   
+            enQueue(q, front(*q));
+            printf("%d %s\n", front(*q).Stud_id, front(*q).Stud_name.fname);
+            deQueue(q);
+        }
     }
+    else
+    {
+        printf("Queue is Empty.");
+    }
+    
     
 }
 
