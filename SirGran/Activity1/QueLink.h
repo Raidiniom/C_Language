@@ -23,7 +23,8 @@ Queue createQueue();
 
 bool isEmpty(Queue q);
 
-void displayQueue(Queue q);
+void debugQueue(Queue q);
+void visualizeQueue(Queue q);
 
 bool enQueue(Queue *q, Data d);
 bool deQueue(Queue *q);
