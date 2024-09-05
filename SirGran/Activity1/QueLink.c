@@ -28,23 +28,33 @@ void debugQueue(Queue q) {
     
 }
 
-void visualizeQueue(Queue *q) {
-    if (!isEmpty(*q))
+void visualizeQueue(Queue q) {
+    if (!isEmpty(q))
     {
-        NodePTR comp = q->tail;
+        Data comp = q.head->Elem;
 
-        while (comp->Elem.Stud_id != q->head->Elem.Stud_id)
+        while (!isEmpty(q))
         {   
-            enQueue(q, front(*q));
-            printf("%d %s\n", front(*q).Stud_id, front(*q).Stud_name.fname);
-            deQueue(q);
+            printf("%d %s\n", front(q).Stud_id, front(q).Stud_name.fname);
+            // Using enQueue and deQueue
+            // enQueue(&q, front(q));
+            // deQueue(&q);
+
+            // this is basically Trav
+            q.head = q.head->next;
+
+
+            // if (comp.Stud_id == front(q).Stud_id)
+            // {
+            //     break;
+            // }
+            
         }
     }
     else
     {
-        printf("Queue is Empty.");
+        printf("Queue is Empty!\n");
     }
-    
     
 }
 
@@ -84,4 +94,19 @@ bool deQueue(Queue *q) {
 Data front(Queue q) {
     return q.head->Elem;
 }
-void makeNULL(Queue *q);
+
+void makeNULL(Queue *q) {
+    NodePTR freethis;
+
+    if (!isEmpty(*q))
+    {
+        while (q->head != NULL)
+        {
+            freethis = q->head;
+            q->head = q->head->next;
+            free(freethis);
+        }
+        
+    }
+    
+}

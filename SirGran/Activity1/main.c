@@ -23,7 +23,10 @@ int main() {
 
     // debugQueue(q);
 
-    visualizeQueue(&q);
+    visualizeQueue(q);
+
+    makeNULL(&q);
+    visualizeQueue(q);
 
     return 0;
 }
