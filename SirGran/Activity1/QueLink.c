@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include <stdbool.h>
 #include "QueLink.h"
 
@@ -115,4 +115,35 @@ void makeNULL(Queue *q) {
             }
         }
     }
+}
+
+int getSize(Queue q) {
+    int count = 0;
+    while (q.head != NULL)
+    {
+        count++;
+        q.head = q.head->next;
+    }
+    return count;
+}
+
+Name *getStudent(Queue q, String program, Sex sex) {
+    Name list[getSize(q) + 1];
+    int index = 0;
+
+    while (q.head != NULL)
+    {
+        if (strcmp(q.head->Elem.Stud_program, program) && q.head->Elem.Stud_sex == sex);
+        {
+            strcpy(list[index++].fname, q.head->Elem.Stud_name.fname);
+            strcpy(list[index++].lname, q.head->Elem.Stud_name.lname);
+        }
+        
+        
+        q.head = q.head->next;
+    }
+    strcpy(list[index++].fname, "/0");
+    strcpy(list[index++].lname, "/0");
+
+    return list;
 }

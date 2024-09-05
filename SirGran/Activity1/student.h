@@ -4,7 +4,6 @@
 #include <string.h>
 #include "QueLink.h"
 
-typedef Queue Q;
 typedef char String[10];
 
 typedef struct 
@@ -29,8 +28,7 @@ typedef struct
 
 Name createName(String fname, String lname);
 Student createStudent(int ID, Name student_name, Sex sex, String program);
-int getSize(Q q);
-Name *getStudent(Q q, String program, Sex sex);
+
 
 
 #endif

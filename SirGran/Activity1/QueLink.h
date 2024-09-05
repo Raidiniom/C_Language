@@ -33,4 +33,7 @@ bool deQueue(Queue *q);
 Data front(Queue q);
 void makeNULL(Queue *q);
 
+int getSize(Queue q);
+Name *getStudent(Queue q, String program, Sex sex);
+
 #endif
