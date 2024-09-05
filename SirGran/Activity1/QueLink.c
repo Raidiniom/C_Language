@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <stdbool.h>
 #include "QueLink.h"
 
 Queue createQueue() {
@@ -25,7 +26,6 @@ void debugQueue(Queue q) {
         printf("%d %s, %s %s %s\n", trav->Elem.Stud_id, trav->Elem.Stud_name.fname, trav->Elem.Stud_name.lname, (trav->Elem.Stud_sex == 0) ? "Female" : "Male", trav->Elem.Stud_program);
         trav = trav->next;
     }
-    
 }
 
 void visualizeQueue(Queue q) {
@@ -55,7 +55,6 @@ void visualizeQueue(Queue q) {
     {
         printf("Queue is Empty!\n");
     }
-    
 }
 
 bool enQueue(Queue *q, Data d) {
@@ -73,8 +72,6 @@ bool enQueue(Queue *q, Data d) {
         q->tail->next = newNode;
         q->tail = q->tail->next;
     }
-    
-    
 }
 
 bool deQueue(Queue *q) {
@@ -85,6 +82,12 @@ bool deQueue(Queue *q) {
         temp = q->head->next;
         free(q->head);
         q->head = temp;
+
+        if (!q->head)
+        {
+            q->tail = NULL;
+        }
+        
 
         return true;
     }
@@ -105,8 +108,11 @@ void makeNULL(Queue *q) {
             freethis = q->head;
             q->head = q->head->next;
             free(freethis);
+
+            if (!q->head)
+            {
+                q->tail = NULL;
+            }
         }
-        
     }
-    
 }

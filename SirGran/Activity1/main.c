@@ -25,8 +25,10 @@ int main() {
 
     visualizeQueue(q);
 
-    makeNULL(&q);
-    visualizeQueue(q);
+    getSize(q);
+
+    // makeNULL(&q);
+    // visualizeQueue(q);
 
     return 0;
 }
