@@ -25,16 +25,19 @@ int main() {
 
     visualizeQueue(q);
 
+    printf("++++****++++****++++****++++\n");
+
     Name *studList = getStudent(q, "BSIT", male);
 
     // makeNULL(&q);
     // visualizeQueue(q);
     
-    for (int i = 0; !strcmp(studList[i].fname, "/0"); i++)
+    for (int i = 0; strcmp(studList[i].fname, "") != 0; i++)
     {
         printf("%s, %s\n", studList[i].fname, studList[i].lname);
     }
     
+    free(studList);
 
     return 0;
 }

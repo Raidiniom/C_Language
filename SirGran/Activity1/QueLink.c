@@ -127,23 +127,34 @@ int getSize(Queue q) {
     return count;
 }
 
-Name *getStudent(Queue q, String program, Sex sex) {
-    Name list[getSize(q) + 1];
+Name* getStudent(Queue q, String program, Sex sex) {
+    int size = getSize(q);
+    Name list[size + 1];
     int index = 0;
 
-    while (q.head != NULL)
+    while (!isEmpty(q))
     {
-        if (strcmp(q.head->Elem.Stud_program, program) && q.head->Elem.Stud_sex == sex);
+        if (strcmp(q.head->Elem.Stud_program, program) == 0 && q.head->Elem.Stud_sex == sex);
         {
-            strcpy(list[index++].fname, q.head->Elem.Stud_name.fname);
-            strcpy(list[index++].lname, q.head->Elem.Stud_name.lname);
+            strcpy(list[index].fname, q.head->Elem.Stud_name.fname);
+            strcpy(list[index].lname, q.head->Elem.Stud_name.lname);
+             
+            index++;
         }
         
         
         q.head = q.head->next;
     }
-    strcpy(list[index++].fname, "/0");
-    strcpy(list[index++].lname, "/0");
+    strcpy(list[index].fname, "");
+    strcpy(list[index].lname, "");
 
-    return list;
+    Name* naming = malloc(sizeof(Name) * (index + 1));
+
+    if (naming)
+    {
+        memcpy(naming, list, sizeof(Name) * (index + 1));
+    }
+    
+
+    return naming;
 }
