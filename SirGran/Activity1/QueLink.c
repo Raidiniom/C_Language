@@ -35,7 +35,7 @@ void visualizeQueue(Queue q) {
 
         while (!isEmpty(q))
         {   
-            printf("%d %s\n", front(q).Stud_id, front(q).Stud_name.fname);
+            printf("%d %s %s\n", front(q).Stud_id, front(q).Stud_name.fname, front(q).Stud_name.lname);
             // Using enQueue and deQueue
             // enQueue(&q, front(q));
             // deQueue(&q);
@@ -157,4 +157,27 @@ Name* getStudent(Queue q, String program, Sex sex) {
     
 
     return naming;
+}
+
+
+void insertSorted(Queue *q, Data d) {
+    /* Operations should be done
+    -> a pointer pointing to the head
+    -> utilize head and tail for inserting
+    -> must have insert front incase there is much lower value
+    -> highest to lowest
+    */
+
+   NodePTR new_node = malloc(sizeof(NodeType));
+
+   new_node->Elem = d;
+   
+   if (isEmpty(*q))
+   {
+        new_node->next = q->head;
+        q->head = new_node;
+        q->tail = new_node;
+   }
+   
+    
 }

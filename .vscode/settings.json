@@ -11,6 +11,7 @@
         "stacks.h": "c",
         "queueadt.h": "c",
         "random": "c",
-        "quelink.h": "c"
+        "quelink.h": "c",
+        "limits": "c"
     }
 }

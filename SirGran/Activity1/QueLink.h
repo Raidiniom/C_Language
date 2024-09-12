@@ -35,5 +35,6 @@ void makeNULL(Queue *q);
 
 int getSize(Queue q);
 Name* getStudent(Queue q, String program, Sex sex);
+void insertSorted(Queue *q, Data d);
 
 #endif
