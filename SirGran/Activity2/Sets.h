@@ -82,11 +82,7 @@ void display_set(Set set) {
 }
 
 bool is_element(Set set, int index) {
-    if (cardinality(set) != 0 && set.elems[index] == 1)
-    {
-        return true;
-    }
-    return false;
+    return set.elems[index] == 1;
 }
 
 bool is_subset(Set universal, Set subset) {
@@ -112,11 +108,12 @@ Set union_set(Set set_a, Set set_b) {
     int size = (set_a.max > set_b.max) ? set_a.max : set_b.max;
     Set set_U = create_set(size);
     
-    for (int i = 0; i < set_U.max; i++)
+    for (int i = 0; i < size; i++)
     {
         if (set_a.elems[i] == 1 || set_b.elems[i] == 1)
         {
             set_U.elems[i] = 1;
+            set_U.count++;
         }
         
     }
@@ -131,12 +128,70 @@ Set intersection_set(Set set_a, Set set_b) {
         int size = (set_a.max > set_b.max) ? set_a.max : set_b.max;
         Set set_I = create_set(size);
 
+        for (int i = 0; i < size; i++)
+        {
+            if (set_a.elems[i] == 1 && set_b.elems[i] == 1)
+            {
+                set_I.elems[i] = 1;
+                set_I.count++;
+            }
+            
+        }
+        
+
         return set_I;
     }
     
 }
-Set difference_set(Set set_a, Set set_b);
-Set symetric_diff_set(Set set_a, Set set_b);
+
+Set difference_set(Set set_a, Set set_b) {
+    if (cardinality(set_a) != 0 && cardinality(set_b) != 0)
+    {
+        int size = (set_a.max > set_b.max) ? set_a.max : set_b.max;
+        Set set_D = create_set(size);
+        for (int i = 0; i < size; i++)
+        {
+            if (set_a.elems[i] == 1)
+            {
+                if (is_element(set_a, i) != is_element(set_b, i))
+                {
+                    set_D.elems[i] = 1;
+                    set_D.count++;
+                }
+            }
+            
+        }
+        
+
+        return set_D;
+    }
+    
+}
+
+Set symetric_diff_set(Set set_a, Set set_b) {
+    if (cardinality(set_a) != 0 && cardinality(set_b) != 0)
+    {
+        int size = (set_a.max > set_b.max) ? set_a.max : set_b.max;
+        Set set_SD = create_set(size);
+
+        for (int i = 0; i < size; i++)
+        {
+            if (set_a.elems[i] == 1 || set_b.elems[i] == 1)
+            {
+                if (!is_element(set_a, i) || !is_element(set_b, i))
+                {
+                    set_SD.elems[i] = 1;
+                    set_SD.count++;
+                }
+            }
+            
+        }
+        
+
+        return set_SD;
+    }
+    
+}
 
 int cardinality(Set set) {
     return set.count;
