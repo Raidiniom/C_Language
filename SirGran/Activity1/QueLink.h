@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "student.h"
 
+
 typedef Student Data;
 
 typedef struct node 
@@ -24,7 +25,7 @@ Queue createQueue();
 bool isEmpty(Queue q);
 
 void debugQueue(Queue q);
-void visualizeQueue(Queue *q);
+void visualizeQueue(Queue q);
 
 bool enQueue(Queue *q, Data d);
 bool deQueue(Queue *q);
@@ -32,11 +33,8 @@ bool deQueue(Queue *q);
 Data front(Queue q);
 void makeNULL(Queue *q);
 
-// Other Functions
-Name *getStudent(Queue q, String *program, Sex s);
-/*
-    Gets the names of the students that matches to the program and sex. 
-    Use a name with empty string to denote a terminator for the Names array.
-*/
+int getSize(Queue q);
+Name* getStudent(Queue q, String program, Sex sex);
+void insertSorted(Queue *q, Data d);
 
 #endif

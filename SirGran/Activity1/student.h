@@ -2,6 +2,7 @@
 #define STUDENT_H
 
 #include <string.h>
+#include "QueLink.h"
 
 typedef char String[10];
 
@@ -27,6 +28,7 @@ typedef struct
 
 Name createName(String fname, String lname);
 Student createStudent(int ID, Name student_name, Sex sex, String program);
+
 
 
 #endif

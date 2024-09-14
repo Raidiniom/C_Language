@@ -23,7 +23,42 @@ int main() {
 
     // debugQueue(q);
 
-    visualizeQueue(&q);
+    visualizeQueue(q);
+
+    printf("\n++++****++++****++++****++++\n");
+
+    Name *studList = getStudent(q, "BSIT", male);
+
+    // makeNULL(&q);
+    // visualizeQueue(q);
+    
+    for (int i = 0; strcmp(studList[i].fname, "") != 0; i++)
+    {
+        printf("%s, %s\n", studList[i].fname, studList[i].lname);
+    }
+    
+    free(studList);
+
+    printf("\n++++****++++****++++****++++\n");
+    Queue sortedQueue = createQueue();
+
+    Student stud10 = createStudent(999, createName("Elysia", "HOHE"), female, "BSCS");
+    Student stud11 = createStudent(1010, createName("Kaplas", "Destruction"), male, "BSCS");
+    Student stud12 = createStudent(1111, createName("Eimi", "Notoka"), female, "BSIT");
+    Student stud13 = createStudent(1212, createName("Kebin", "Delivery"), male, "BSIS");
+    Student stud14 = createStudent(1313, createName("Nonomi", "Koroka"), female, "BSCPE");
+    insertSorted(&sortedQueue, stud10);
+    insertSorted(&sortedQueue, stud13);
+    insertSorted(&sortedQueue, stud11);
+    insertSorted(&sortedQueue, stud14);
+    insertSorted(&sortedQueue, stud12);
+    insertSorted(&sortedQueue, stud1);
+    insertSorted(&sortedQueue, stud3);
+    insertSorted(&sortedQueue, stud4);
+    insertSorted(&sortedQueue, stud6);
+    insertSorted(&sortedQueue, stud5);
+
+    visualizeQueue(sortedQueue);
 
     return 0;
 }
