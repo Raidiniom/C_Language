@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX 10
 
@@ -82,7 +83,27 @@ void displayFront(Name pop) {
   at the end indicating the last item in list as empty strings for
   fname and lname. If there are no names that will match then the
   function should return the sentinel.*/
-Name *filterNames(NQueue *nq, char *filterString);
+Name *filterNames(NQueue *nq, String filterString) {
+    Name *returnName = malloc((MAX + 1) * sizeof(Name));
+
+    int j = 0;
+
+    for (int i = nq->front; i != (nq->rear + 1) % MAX; i = (i + 1) % MAX)
+    {
+        if (strcmp(nq->elems[i].lname, filterString) > 0)
+        {
+            strcpy(returnName[j].fname, nq->elems[i].fname);
+            strcpy(returnName[j].lname, nq->elems[i].lname);
+            j++;
+        }
+        
+    }
+    returnName[j].fname[0] = '\0';
+    returnName[j].lname[0] = '\0';
+    
+
+    return returnName;
+}
 
 /*Insert soreted base on lastname. Rember to use the property 
   of the queue but without using the functions (enqueue, dequeue, front)*/

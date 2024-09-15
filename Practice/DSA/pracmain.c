@@ -19,19 +19,19 @@ int main() {
     enqueue(&circleQ, createName("ivan","jaym"));
     enqueue(&circleQ, createName("summi","dera"));
     enqueue(&circleQ, createName("kurt","aron"));
-    enqueue(&circleQ, createName("wewew","hallo"));
+    enqueue(&circleQ, createName("cron","raym"));
 
     printf("\nInitial List:\n");
     displayFront(front(circleQ));
     displayQueue(circleQ);
 
-    dequeue(&circleQ);
-    dequeue(&circleQ);
-    dequeue(&circleQ);
-
-    printf("\nDeleted 3:\n");
-    displayFront(front(circleQ));
-    displayQueue(circleQ);
+    Name *filtered = filterNames(&circleQ, "ra");
+    printf("\nFiltered Names\n");
+    for (int i = 0; filtered[i].lname[0] != '\0'; i++)
+    {
+        printf("%s, %s\n", filtered[i].fname, filtered[i].lname);
+    }
+    
 
     return 0;
 }
