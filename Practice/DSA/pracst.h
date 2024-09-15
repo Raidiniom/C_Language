@@ -1,5 +1,10 @@
+#ifndef PRACST_H
+#define PRACST_H
+
+typedef char String[30];
+
 typedef struct {
-    char name[30];
+    String name;
     int age;
     char sex;
 } Person;
@@ -27,4 +32,6 @@ bool insertSorted2(Stack *s, Person p);
 
 /*Sort the values based on name. Use flag for ascending 
   or descending. */
-void sortStack(Stacks *s, bool flag);
+void sortStack(Stack *s, bool flag);
+
+#endif
