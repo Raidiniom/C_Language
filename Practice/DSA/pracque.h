@@ -56,15 +56,19 @@ bool enqueue(NQueue *nq, Name n){
 
         // Uncomment for debugging
         // printf("F:%d R:%d", nq->front, nq->rear);
+
+        return true;
     }
-    
+    return false;
 }
 bool dequeue(NQueue *nq) {
     if (!isEmpty(*nq))
     {
         nq->elems[nq->front] = nq->elems[nq->front += 1];
+
+        return true;
     }
-    
+    return false;
 }
 Name front(NQueue nq) {
     Name pop;
@@ -88,12 +92,22 @@ Name *filterNames(NQueue *nq, String filterString) {
 
     int j = 0;
 
-    for (int i = nq->front; i != (nq->rear + 1) % MAX; i = (i + 1) % MAX)
+    for (int i = nq->rear; i != (nq->front + 1) % MAX; i = (i + 1) % MAX)
     {
         if (strcmp(nq->elems[i].lname, filterString) > 0)
         {
+            
             strcpy(returnName[j].fname, nq->elems[i].fname);
-            strcpy(returnName[j].lname, nq->elems[i].lname);
+            strcpy(returnName[j].lname, nq->elems[i].lname);    
+
+            for (int x = i; x != (nq->rear + 1) % MAX; x++)
+            {
+                nq->elems[x] = nq->elems[(x + 1) % MAX];
+            }
+
+            nq->rear = (nq->rear - 1) % MAX;
+            //  debugging
+            // printf("F:%d R:%d\n", nq->front, nq->rear);
             j++;
         }
         
@@ -107,6 +121,39 @@ Name *filterNames(NQueue *nq, String filterString) {
 
 /*Insert soreted base on lastname. Rember to use the property 
   of the queue but without using the functions (enqueue, dequeue, front)*/
-bool insertSorted(NQueue *nq, Name n);
+bool insertSorted(NQueue *nq, Name n) {
+    if (!isFull(*nq))
+    {
+        if (isEmpty(*nq)) // here an if statement if this is the 1st insert
+        {
+            nq->rear = (nq->rear + 1) % MAX;
+            nq->elems[nq->rear] = n;
+        }
+        else // in here is inserting and should move the elems to the right
+        {
+            int i;
+            for (i = nq->rear; i != nq->front; i = (i - 1) % MAX)
+            {
+                if (strcmp(nq->elems[i].lname, n.lname) > 0)
+                {
+                    
+
+                    // inserts the data in the empty slot
+                    nq->elems[(i + 1) % MAX] = nq->elems[i];
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            nq->elems[(i + 1) % MAX] = n;
+            nq->rear = (nq->rear + 1) % MAX;
+            
+        }
+        return true;
+    }
+    return false;
+}
 
 #endif
