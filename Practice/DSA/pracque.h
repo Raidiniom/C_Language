@@ -136,8 +136,6 @@ bool insertSorted(NQueue *nq, Name n) {
             {
                 if (strcmp(nq->elems[i].lname, n.lname) > 0)
                 {
-                    
-
                     // inserts the data in the empty slot
                     nq->elems[(i + 1) % MAX] = nq->elems[i];
                 }
