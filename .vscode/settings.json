@@ -13,6 +13,8 @@
         "random": "c",
         "quelink.h": "c",
         "limits": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "chrono": "c",
+        "semaphore": "c"
     }
 }
