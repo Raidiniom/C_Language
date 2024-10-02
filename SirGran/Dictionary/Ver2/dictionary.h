@@ -132,43 +132,44 @@ bool isDuplicate(ProdDict inventory, Product input) {
     return false;
 }
 
-bool transferITEM(ProdDict *inventory, Stack *hold) {
-    int index = getHASH(*inventory, peekSTACK(*hold));
-    if (!isDictionaryFull(*inventory))
+
+
+bool addITEM(ProdDict *inventory, Product prod) {
+    NodePtr insert_this = malloc(sizeof(NodeType)), hold;
+
+    insert_this->prod = prod;
+    (*inventory).count++;
+
+    if (inventory->data[getHASH(*inventory, prod)] == NULL)
     {
-        while ((*inventory).data[index] != NULL)
-        {
-            if (isDuplicate(*inventory, peekSTACK(*hold)))
-            {
-                (*inventory).data[index]->prod.prodQTY += (*hold)->prod.prodQTY;
-            }
-            else
-            {
-                pushITEM(&(*inventory).data[index], peekSTACK(*hold));
-            }
-            
-            (*inventory).count++;
-            popITEM(hold);
-            
-        }
-        
-        return true;
+        insert_this->next = inventory->data[getHASH(*inventory, prod)];
+        inventory->data[getHASH(*inventory, prod)] = insert_this;
     }
     else
     {
-        printf("Inventory is Full!");
-        return false;
+        hold = inventory->data[getHASH(*inventory, prod)];
+
+        inventory->data[getHASH(*inventory, prod)] = inventory->data[getHASH(*inventory, prod)]->next;
+
+        insert_this->next = hold;
+        inventory->data[getHASH(*inventory, prod)] = insert_this;
     }
     
 }
 
-
-bool addITEM(ProdDict *inventory, Product prod) {
+bool removeITEM(ProdDict *inventory, int id, String name) {
     // 
 }
 
-bool removeITEM(ProdDict *inventory, int id, String name) {
-    // 
+bool transferITEM(ProdDict *inventory, Stack *hold) {
+    while ((*hold) != NULL)
+    {
+        addITEM(inventory, (*hold)->prod);
+        
+        popITEM(hold);
+    }
+    
+    return true;
 }
 
 void displayDictionary(ProdDict inventory) {

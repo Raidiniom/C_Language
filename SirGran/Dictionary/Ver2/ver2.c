@@ -29,9 +29,13 @@ int main() {
 
     printf("%d\n", isDuplicate(Inventory, createProduct(11, "BlazeBurner", 14, 149.99)));
 
+    // addITEM(&Inventory, peekSTACK(Hold));
+    
     transferITEM(&Inventory, &Hold);
-    transferITEM(&Inventory, &Hold);
-    transferITEM(&Inventory, &Hold);
+
+    // popITEM(&Hold);
+    // popITEM(&Hold);
+    // popITEM(&Hold);
     
     printf("\n\nStatus Stack: \n");
     displayStack(Hold);

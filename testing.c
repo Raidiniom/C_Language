@@ -1,19 +1,40 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    int id = 10;
-    int hash = 0;
-
-    for (int i = id; i > 0; i--)
-    {
-        // ((10 >> i) % 2 != 0) ? printf("%d", i), hash += i : printf("0");
-        printf("%d ", 10 >> i);
+bool addProductBaseOnExpiry(Inventory *i, Product p) {
+    // To do code logic here.
+    Inventory hold_stack;
+    
+    initInventory(&hold_stack);
+    
+    NodePtr new_Node = malloc(sizeof(NodeType)), transfer;
+    
+    new_Node->prod = p;
+    
+    if(i->currQty + p.prodQty > 100) {
+        return false;
+    }
+    
+    while(!isEmpty(*i) && dateDifference(i->top->prod.expiry, p.expiry) >= 0) {
+        transfer = i->top;
+        
+        i->top = i->top->link;
+        
+        transfer->link = hold_stack.top;
+        hold_stack.top = transfer;
+    }
+    
+    new_Node->link = i->top;
+    i->top = new_Node;
+    
+    i->currQty += p.prodQty;
+    
+    while(!isEmpty(hold_stack)) {
+        transfer = hold_stack.top;
+        
+        hold_stack.top = hold_stack.top->link;
+        
+        transfer->link = i->top;
+        i->top = transfer;
     }
     
 
-    return 0;
+    return true;
 }
-
-// 0 1 2 3 4 5
-// 0 1 2 4 8 16
