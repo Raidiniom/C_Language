@@ -28,20 +28,20 @@ int main() {
     displayStack(Hold);
 
     printf("%d\n", isDuplicate(Inventory, createProduct(11, "BlazeBurner", 14, 149.99)));
-
-    // addITEM(&Inventory, peekSTACK(Hold));
     
     transferITEM(&Inventory, &Hold);
-
-    // popITEM(&Hold);
-    // popITEM(&Hold);
-    // popITEM(&Hold);
     
     printf("\n\nStatus Stack: \n");
     displayStack(Hold);
     printf("\n\nDictionary!\n");
     printf("%d\n", isDuplicate(Inventory, createProduct(11, "BlazeBurner", 14, 149.99)));
     displayDictionary(Inventory);
+
+    // removeITEM(&Inventory, 4, "Mixer");
+    // removeITEM(&Inventory, 3, "Press");
+
+    // displayDictionary(Inventory);
     
     return 0;
 }
+

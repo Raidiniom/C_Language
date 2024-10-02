@@ -76,12 +76,20 @@ Product peekSTACK(Stack stack) {
 }
 
 void displayStack(Stack stack) {
-    while (stack != NULL)
+    if (stack != NULL)
     {
-        displayProduct(stack->prod);
+        while (stack != NULL)
+        {
+            displayProduct(stack->prod);
 
-        stack = stack->next;
+            stack = stack->next;
+        }
     }
+    else
+    {
+        printf("It is empty!");
+    }
+    
 }
 
 // Dictionary
@@ -137,28 +145,68 @@ bool isDuplicate(ProdDict inventory, Product input) {
 bool addITEM(ProdDict *inventory, Product prod) {
     NodePtr insert_this = malloc(sizeof(NodeType)), hold;
 
+    int hash = getHASH(*inventory, prod);
+
     insert_this->prod = prod;
     (*inventory).count++;
 
-    if (inventory->data[getHASH(*inventory, prod)] == NULL)
+    if (inventory->data[hash] == NULL)
     {
-        insert_this->next = inventory->data[getHASH(*inventory, prod)];
-        inventory->data[getHASH(*inventory, prod)] = insert_this;
+        insert_this->next = inventory->data[hash];
+        inventory->data[hash] = insert_this;
+    }
+    else if (isDuplicate(*inventory, prod))
+    {
+        hold = inventory->data[hash];
+
+        while (hold != NULL)
+        {
+            /* code */
+        }
+        
     }
     else
     {
-        hold = inventory->data[getHASH(*inventory, prod)];
+        hold = inventory->data[hash];
 
-        inventory->data[getHASH(*inventory, prod)] = inventory->data[getHASH(*inventory, prod)]->next;
+        inventory->data[hash] = inventory->data[hash]->next;
 
         insert_this->next = hold;
-        inventory->data[getHASH(*inventory, prod)] = insert_this;
+        inventory->data[hash] = insert_this;
     }
     
 }
 
 bool removeITEM(ProdDict *inventory, int id, String name) {
-    // 
+    for (int i = 0; i < inventory->max; i++)
+    {
+        NodePtr trav = inventory->data[i], hold = NULL;
+        while (trav != NULL)
+        {
+            if (trav->prod.prodID == id && strcmp(trav->prod.prodNAME, name) == 0)
+            {
+                if (hold != NULL)
+                {
+                    hold->next = trav->next;
+                }
+                else
+                {
+                    inventory->data[i] = trav->next;
+                }
+                
+
+                free(trav);
+
+                return true;
+            }
+            
+            hold = trav;
+            trav = trav->next;
+        }
+        
+    }
+
+    return false;
 }
 
 bool transferITEM(ProdDict *inventory, Stack *hold) {
