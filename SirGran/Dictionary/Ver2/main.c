@@ -91,8 +91,10 @@ int main() {
     // debug_get_hash(delivery);
 
     Product p2dup = create_product(2, "LCog", 100, 26.29);
+    Product p3dup = create_product(1, "SCog", 100, 21.18);
 
     push_item(&delivery, p2dup);
+    push_item(&delivery, p3dup);
 
     add_item(&warehouse, &delivery);
 
