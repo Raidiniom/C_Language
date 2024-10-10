@@ -57,6 +57,27 @@ void insert_data(NodePtr *root, int data) {
     
 }
 
+void insert_data_v2(NodePtr *root, int data) {
+    NodePtr *trav = root;
+
+    while (*trav != NULL && (*trav)->data != data)
+    {
+        trav = ((*trav)->data < data) ? &(*trav)->right : &(*trav)->left;
+    }
+    
+    if (*trav == NULL)
+    {
+        *trav = calloc(sizeof(NodeType), 1);
+
+        if ((*trav) != NULL)
+        {
+            (*trav)->data = data;
+        }
+        
+    }
+    
+}
+
 void in_order(NodePtr root) {
     if (root != NULL) {
         in_order(root->left);  // Visit left subtree

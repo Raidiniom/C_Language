@@ -5,15 +5,24 @@
 #include "tree.h"
 
 int main() {
-    NodePtr mytree;
+    NodePtr mytree, mytreev2;
     init_tree(&mytree);
+    init_tree(&mytreev2);
 
     for (int i = 1; i <= 20; i++)
     {
         insert_data(&mytree, i);
     }
     
+    for (int i = 1; i <= 20; i++)
+    {
+        insert_data_v2(&mytreev2, i);
+    }
 
+    printf("V1 insert \n");
+    in_order(mytree);
+    printf("\n\n");
+    printf("V2 insert \n");
     in_order(mytree);
     printf("\n\n");
     // pre_order(mytree);
