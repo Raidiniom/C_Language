@@ -5,9 +5,15 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX 10
+#define MAX 20
 
 typedef char String[20];
+
+typedef enum {
+    open,
+    close,
+    deleted
+} Flag;
 
 typedef struct {
     int stud_id;
@@ -18,11 +24,12 @@ typedef struct {
 
 typedef struct node {
     Student stud;
+    Flag status;
     struct node *next;
 } NodeType, *NodePtr;
 
 typedef struct {
-    NodePtr elems[20];
+    NodePtr elems[MAX];
     int count;
 } HashTable;
 
@@ -36,5 +43,7 @@ bool insertElem(HashTable *ht, Student stud);
 bool deleteElem(HashTable *ht, Student stud);
 
 void visualizeTable(HashTable ht);
+
+void check_status(HashTable ht);
 
 #endif

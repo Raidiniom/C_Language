@@ -2,6 +2,3 @@
 *.exe.stackdump
 *.o
 *.out
-main_one
-a.out
-pcm
