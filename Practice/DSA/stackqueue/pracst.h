@@ -40,6 +40,63 @@ void initStack(Stack *s) {
 bool isEmpty(Stack s) {
   return s->link == NULL;
 }
+
+bool push(Stack *s, Person p) {
+  Stack start =(NodePtr) malloc(sizeof(NodeType));
+
+  if (start ==  NULL)
+  {
+    return false;
+  }
+  
+
+  start->data = p;
+  start->link = *s;
+  *s = start;
+  
+  return true;
+}
+bool pop(Stack *s) {
+  if (!isEmpty(*s))
+  {
+    Stack hold;
+
+    hold = *s;
+    *s = (*s)->link;
+
+    free(hold);
+
+    return true;
+  }
+  
+  return false;
+}
+Person peek(Stack s) {
+  return s->data;
+}
+
+/*Insert sorted base on lastname. Rember to use the property 
+  of the stack using push, pop, and peek functions.*/
+bool insertSorted1(Stack *s, Person p) {
+  Stack temp;
+  initStack(&temp);
+
+  while ((*s) != NULL && strcmp((*s)->data.lname, p.lname) < 0)
+  {
+    push(&temp, peek(*s));
+    pop(s);
+  }
+
+  push(s, p);
+
+  while (temp != NULL)
+  {
+    push(s, peek(temp));
+    pop(&temp);
+  }
+  
+  return true;
+}
 void displayStack(Stack s) {
   if (!isEmpty(s))
   {
@@ -54,34 +111,6 @@ void displayStack(Stack s) {
   }
   
 }
-
-bool push(Stack *s, Person p) {
-  Stack start =(NodePtr) malloc(sizeof(NodeType));
-
-  start->data = p;
-  start->link = *s;
-  *s = start;
-  
-}
-bool pop(Stack *s) {
-  if (!isEmpty(*s))
-  {
-    Stack hold;
-
-    hold = *s;
-    *s = (*s)->link;
-
-    free(hold);
-  }
-  
-}
-Person peek(Stack s) {
-  return s->data;
-}
-
-/*Insert sorted base on lastname. Rember to use the property 
-  of the stack using push, pop, and peek functions.*/
-bool insertSorted1(Stack *s, Person p);
 
 /*Insert sorted base on lastname. Rember to use the property 
   of the stack but without using push, pop, and peek functions.*/

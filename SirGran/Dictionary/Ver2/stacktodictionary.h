@@ -194,9 +194,9 @@ void add_item(Dictionary *dictionary, Stack *stack) {
 
 void remove_item(Dictionary *dictionary, int id, String name) {
     // remove the specific item being inputted
-    Product find = create_product(id, name, 0, 0);
+    Product find = create_product(id, name, 0, 0); // use to get the hash value of the student
 
-    int hash_index = get_hash(find) % dictionary->max;
+    int hash_index = get_hash(find) % dictionary->max; // hash value
 
     NodePtr curr = dictionary->data[hash_index];
     NodePtr prev = NULL;

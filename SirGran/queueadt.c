@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include "queueadt.h"
 
+/*
+    This is circular array!
+*/
+
 //  =====Helps Creating the Student Details=====
 Name createName(String fname, String lname) {
     Name initName;

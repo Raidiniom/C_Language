@@ -38,6 +38,7 @@ int main() {
     }
 
     printf("\ndebuging\n");
+    displayFront(front(circleQ));
     displayQueue(circleQ);
     
 

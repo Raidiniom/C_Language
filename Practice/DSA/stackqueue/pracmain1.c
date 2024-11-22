@@ -24,7 +24,14 @@ int main() {
     push(&mystack, p4);
     push(&mystack, p5);
 
+    printf("Inserted\n");
+    displayStack(mystack);
+
+    insertSorted1(&mystack, createPerson("Clar", "Dian", 19, 'm'));
+
+    printf("Insert Sorted\n");
     displayStack(mystack);
 
     return 0;
 }
+
