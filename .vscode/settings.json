@@ -15,6 +15,7 @@
         "limits": "c",
         "stdlib.h": "c",
         "chrono": "c",
-        "semaphore": "c"
+        "semaphore": "c",
+        "enseran_header.h": "c"
     }
 }
