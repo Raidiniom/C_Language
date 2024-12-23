@@ -12,6 +12,8 @@ typedef char String[20];
 
 typedef struct {
     String name;
+
+    // Entity Status
     float health;
     float max_health;
     float attack;
@@ -21,6 +23,9 @@ typedef struct {
     float exp_cap;
     int skill_point;
     int skill_point_cap;
+
+    // Entity Identifier
+    int identifier;
 } Entity;
 
 typedef struct {
@@ -41,7 +46,7 @@ World let_there_be_light(int number_enemies, Entity player) {
     return start_world;
 }
 
-Entity create_entity(String name, float health, float attack, float defense) {
+Entity create_entity(String name, float health, float attack, float defense, int identifier) {
     Entity start_entity;
     
     strcpy(start_entity.name, name);
@@ -54,6 +59,7 @@ Entity create_entity(String name, float health, float attack, float defense) {
     start_entity.exp_cap = 100;
     start_entity.skill_point = 0;
     start_entity.skill_point_cap = 5;
+    start_entity.identifier = identifier;
 
     return start_entity;
 }
@@ -81,6 +87,12 @@ bool delete_entity(World *earth) {
                 {
                     earth->population[x] = earth->population[x + 1];
                 }
+
+                if (earth->population[i].identifier > 0 && earth->population[i].identifier <= 5)
+                {
+                    earth->population[0].exp += 15;
+                }
+                
                 
                 earth->count--;
 
@@ -142,23 +154,76 @@ void set_difficulty(World *earth) {
         break;
     
     default:
-            printf("\nError input\n\n");
+            printf("Error input\n");
             goto choose_again;
             return false;
         break;
     }
 }
 
+// 1 - 10, 1-5 normal enemy, 6-9 elite enemy, 10 being boss
 void easy_mode(World *earth) {
-    printf("\nPlaying in Easy Mode");
+    printf("\nPlaying in Easy Mode\n");
+    
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+
+    add_entity(earth, create_entity("Large Ogre", 200, 23.5, 25, 10));
+
 }
 
+// 11 - 20, 11-15 normal enemy, 16-19 elite enemy, 20 being boss
 void normal_mode(World *earth) {
-    printf("\nPlaying in Normal Mode");
+    printf("\nPlaying in Normal Mode\n");
+
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+
+    add_entity(earth, create_entity("Large Ogre", 200, 23.5, 25, 10));
 }
 
+// 21 - 30, 21-25 normal enemy, 26-29 elite enemy, 30 being boss
 void hard_mode(World *earth) {
-    printf("\nPlaying in Hard Mode");
+    printf("\nPlaying in Hard Mode\n");
+
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+    add_entity(earth, create_entity("Goblin", 45, 15, 5, 1));
+
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+    add_entity(earth, create_entity("Orc", 120, 19.5, 15, 6));
+
+    add_entity(earth, create_entity("Gold Gilded Dragon", 1000, 23.5, 25, 10));
 }
 
 void game_intro() {
@@ -171,7 +236,7 @@ void game_intro() {
 
 void player_stats(Entity player) {
     Sleep(1);
-    printf("==============================\n%s\n Health: %.2f/%.2f EXP: %.2f/%.2f \n Attack: %.2f Defense: %.2f\n Skill Points: %d\n", 
+    printf("\n==============================\n%s\n Health: %.2f/%.2f EXP: %.2f/%.2f \n Attack: %.2f Defense: %.2f\n Skill Points: %d\n", 
     player.name, 
     player.health, 
     player.max_health,
@@ -180,6 +245,11 @@ void player_stats(Entity player) {
     player.attack, 
     player.defense, 
     player.skill_point); 
+}
+
+void enemy_display(Entity enenmy) {
+    Sleep(1);
+    printf("\n%s\n Health: %.2f/%.2f\n Attack: %.2f Defense: %.2f\n");
 }
 
 void display_entities(World earth) {
@@ -192,6 +262,8 @@ void display_entities(World earth) {
 
 void debug_menu(World *earth) {
     int input;
+
+    choose_again:
     printf("Choose Actions:\n[0] - 10 dmg applied to player\n[1] - 20 exp added to player\n ");
     scanf("%d", &input);
 
@@ -206,7 +278,8 @@ void debug_menu(World *earth) {
         break;
     
     default:
-        printf("Invalid Input");
+        printf("Invalid Input\n");
+        goto choose_again;
         break;
     }
 }
