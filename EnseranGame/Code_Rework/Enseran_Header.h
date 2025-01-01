@@ -34,14 +34,12 @@ typedef struct {
     int count;
 } World;
 
-World let_there_be_light(int number_enemies, Entity player) {
+World let_there_be_light(int number_enemies) {
     World start_world;
 
     start_world.max = number_enemies + 1;
     start_world.count = 0;
     start_world.population = malloc(number_enemies * sizeof(Entity));
-    start_world.population[0] = player;
-    start_world.count++;
 
     return start_world;
 }
@@ -64,6 +62,10 @@ Entity create_entity(String name, float health, float attack, float defense, int
     return start_entity;
 }
 
+Entity peak_entity(World earth) {
+    return earth.population[0];
+}
+
 bool add_entity(World *earth, Entity entity) {
     if (earth->count < earth->max)
     {
@@ -76,8 +78,8 @@ bool add_entity(World *earth, Entity entity) {
     return false;
 }
 
-bool delete_entity(World *earth) {
-    if (earth->count > 0)
+bool delete_entity(World *earth, Entity *player) {
+    if (peak_entity(*earth).health <= 0)
     {
         for (int i = 0; i < earth->count; i++)
         {
@@ -88,23 +90,26 @@ bool delete_entity(World *earth) {
                     earth->population[x] = earth->population[x + 1];
                 }
 
+                // Depending on the difficulty, each enemy will drop certain amount exp
                 if (earth->population[i].identifier > 0 && earth->population[i].identifier <= 5)
                 {
-                    earth->population[0].exp += 15;
+                    player->exp += 10;
                 }
                 
-                
                 earth->count--;
-
                 i--;
             }
             
         }
-
         return true;
     }
+
     
     return false;
+}
+
+bool earth_is_empty(World earth) {
+    return earth.count == 0;
 }
 
 bool check_player_exp(Entity *player) {
@@ -131,6 +136,8 @@ bool check_player_exp(Entity *player) {
 
 void set_difficulty(World *earth) {
     int difficulty;
+
+    printf("1 -> Easy\n2 -> Normal\n3 -> Hard\n");
 
     choose_again:
     printf("Choose difficulty: ");
@@ -231,7 +238,9 @@ void game_intro() {
     Sleep(1);
     printf("This is a dungeon crawler game\n");
     Sleep(1);
-    printf("==================== Have Fun Playing the Game ====================\n");
+    printf("==================== Have Fun Playing the Game ====================\n\n");
+
+    printf("\nEnter Your Name: ");
 }
 
 void player_stats(Entity player) {
@@ -247,9 +256,9 @@ void player_stats(Entity player) {
     player.skill_point); 
 }
 
-void enemy_display(Entity enenmy) {
+void enemy_display(Entity enemy) {
     Sleep(1);
-    printf("\n%s\n Health: %.2f/%.2f\n Attack: %.2f Defense: %.2f\n");
+    printf("\n%s\n Health: %.2f/%.2f\n Attack: %.2f Defense: %.2f\n", enemy.name, enemy.health, enemy.max_health, enemy.attack, enemy.defense);
 }
 
 void display_entities(World earth) {
@@ -260,22 +269,71 @@ void display_entities(World earth) {
     
 }
 
-void debug_menu(World *earth) {
+void player_actions(World *earth, Entity player) {
+    int choice;
+
+    choose_again:
+    printf("\n=========================\nChoose Action:\n[0] - Deal %.2f Damage\nInput Here: ", player.attack);
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 0:
+            earth->population[0].health -= player.attack;
+        break;
+
+        // case 1:
+        // break;
+
+        // case 2:
+        // break;
+
+        // case 3:
+        // break;
+
+        // case 4:
+        // break;
+
+        // case 5:
+        // break;
+    
+    default:
+        printf("Invalid Input\n");
+        goto choose_again;
+        break;
+    }
+}
+
+void debug_menu(World *earth, Entity *player) {
     int input;
 
     choose_again:
-    printf("Choose Actions:\n[0] - 10 dmg applied to player\n[1] - 20 exp added to player\n ");
+    printf("\n\nChoose Actions:\n[0] - 20 dmg applied to player\n[1] - 20 exp added to player\n[2] - 20 health applied to player\n[3] - 20 dmg applied to enemy\nInput Here: ");
     scanf("%d", &input);
 
     switch (input)
     {
         case 0:
-        earth->population[0].health -= 10;
+            player->health -= 20;
         break;
 
         case 1:
-        earth->population[0].exp += 20;
+            player->exp += 20;
         break;
+
+        case 2:
+            player->health += 20;
+        break;
+
+        case 3:
+            earth->population[0].health -= 20;
+        break;
+
+        // case 4:
+        // break;
+
+        // case 5:
+        // break;
     
     default:
         printf("Invalid Input\n");

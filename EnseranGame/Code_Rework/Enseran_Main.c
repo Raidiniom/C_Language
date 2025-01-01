@@ -4,27 +4,46 @@
 #include "Enseran_Header.h"
 
 int main() {
+    
+    String player_name;
 
-    Entity player = create_entity("Voltaire", 100.00, 25.55, 25.55, 0);
+    game_intro();
+    scanf("%s", &player_name);
+    Entity player = create_entity(player_name, 100.00, 25.55, 25.55, 0);
 
-    World earth = let_there_be_light(8, player);
+    World earth = let_there_be_light(8);
 
     set_difficulty(&earth);
 
-    game_intro();
-
-    while (earth.population[0].health != 0)
+    // Game part
+    while (player.health != 0 || earth_is_empty(earth))
     {
-        player_stats(earth.population[0]);
+        enemy_display(earth.population[0]);
 
-        if (check_player_exp(&earth.population[0]))
-        {
-            printf("%s, has leveled up!!!", earth.population[0].name);
-        }
+        player_stats(player);
 
         
+        if (delete_entity(&earth, &player))
+        {
+            printf("\n\n%s, has defeated %s!!!\n\n", player.name, peak_entity(earth).name);
+        }
+        
 
-        debug_menu(&earth);
+        if (check_player_exp(&player))
+        {
+            printf("\n\n%s, has leveled up!!!\n\n", player.name);
+        }
+
+        debug_menu(&earth, &player);
+    }
+
+    if (earth_is_empty(earth))
+    {
+        printf("\n\n%s has rid the world of evil entities made by the all seeing and consuming void!!!\n\n", player.name);
+    }
+    else 
+    {
+        printf("\n\n%s try again next time in another world HAHAHAHAHAHA!!!!!!!\n\n", player.name);
     }
     
 
