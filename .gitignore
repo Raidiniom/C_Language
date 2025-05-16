@@ -4,3 +4,6 @@
 *.out
 pcm
 out
+*.layout
+*.cbp
+*.depend
