@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1711993276 source:c:\users\raidi\documents\school\usc\c source files\cram\main.c
+	<stdio.h>
+	<stdlib.h>
+	"learner.h"
+
+1711993306 c:\users\raidi\documents\school\usc\c source files\cram\learner.h
+	<string.h>
+	<stdlib.h>
+
+1712044541 source:c:\users\voltaire\documents\for school files\cram\main.c
+	<stdio.h>
+	<stdlib.h>
+	"learner.h"
+
+1712044895 c:\users\voltaire\documents\for school files\cram\learner.h
+	<string.h>
+	<stdlib.h>
+

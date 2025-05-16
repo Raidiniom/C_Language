@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1712047158 source:c:\users\voltaire\documents\bsit\coder\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"fruitstore.h"
+
+1712043390 c:\users\voltaire\documents\bsit\coder\fruitstore.h
+	<stdlib.h>
+	<string.h>
+
